@@ -1,0 +1,15 @@
+.card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1.5rem;
+  max-width: 400px;
+}
+
+.status {
+  margin-top: 1rem;
+}
+
+.available {
+  color: green;
+  font-weight: bold;
+}

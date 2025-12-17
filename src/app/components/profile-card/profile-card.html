@@ -1,0 +1,16 @@
+<div class="card">
+  <h2>{{ name() }}</h2>
+  <h4>{{ role() }}</h4>
+  <p>{{ bio() }}</p>
+
+  <p class="status">
+    Status:
+    <span [class.available]="isAvailable()">
+      {{ isAvailable() ? 'Open to Work' : 'Not Available' }}
+    </span>
+  </p>
+
+  <button (click)="toggleAvailability()">
+    Toggle Status
+  </button>
+</div>

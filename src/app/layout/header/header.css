@@ -1,0 +1,16 @@
+.header {
+  height: 64px;
+  background: #020617;
+  color: #f8fafc;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  margin-left: 240px;
+  border-bottom: 1px solid #1e293b;
+}
+
+.status {
+  color: #22c55e;
+  font-weight: 500;
+}

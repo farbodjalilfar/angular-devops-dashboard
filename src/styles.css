@@ -1,1 +1,18 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  --bg-dark: #0b0d10;
+  --bg-card: #141821;
+  --text-main: #f1f5f9;
+  --text-muted: #94a3b8;
+  --accent: #7c3aed;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  background: radial-gradient(circle at top, #111827, #020617);
+  color: var(--text-main);
+}
