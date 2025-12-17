@@ -1,0 +1,9 @@
+<ul class="list">
+  @for (item of items; track item.id) {
+    <li class="row">
+      <span class="type">{{ item.type }}</span>
+      <span class="msg">{{ item.message }}</span>
+      <span class="time">{{ item.time }}</span>
+    </li>
+  }
+</ul>

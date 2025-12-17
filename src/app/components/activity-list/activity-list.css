@@ -1,0 +1,29 @@
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 90px 1fr 80px;
+  gap: 1rem;
+  padding: 0.8rem 0;
+  border-bottom: 1px solid #1e293b;
+}
+
+.type {
+  font-size: 0.75rem;
+  color: #94a3b8;
+  letter-spacing: 0.06em;
+}
+
+.msg {
+  color: #e5e7eb;
+}
+
+.time {
+  color: #64748b;
+  text-align: right;
+  font-size: 0.85rem;
+}

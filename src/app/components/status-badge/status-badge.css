@@ -1,0 +1,18 @@
+.badge {
+  padding: 0.3rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  border: 1px solid #1e293b;
+}
+
+.online {
+  color: #22c55e;
+}
+
+.degraded {
+  color: #f59e0b;
+}
+
+.offline {
+  color: #ef4444;
+}

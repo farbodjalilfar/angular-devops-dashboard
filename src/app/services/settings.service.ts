@@ -1,4 +1,4 @@
-import { Injectable, signal } from '@angular/core';
+import { Injectable, signal, computed } from '@angular/core';
 import { AppSettings } from '../models/settings.model';
 
 @Injectable({ providedIn: 'root' })
@@ -11,6 +11,9 @@ export class SettingsService {
   });
 
   readonly settings = this._settings.asReadonly();
+
+  // 👇 derived value (cleaner for UI)
+  readonly isMockMode = computed(() => this._settings().mockMode);
 
   update(settings: AppSettings) {
     this._settings.set(settings);

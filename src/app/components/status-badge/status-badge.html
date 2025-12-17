@@ -1,0 +1,8 @@
+<span
+  class="badge"
+  [class.online]="status === 'ONLINE'"
+  [class.degraded]="status === 'DEGRADED'"
+  [class.offline]="status === 'OFFLINE'"
+>
+  {{ status }}
+</span>

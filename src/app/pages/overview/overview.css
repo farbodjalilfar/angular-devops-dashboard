@@ -1,0 +1,128 @@
+/* =========================
+   LAYOUT
+========================= */
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.panels {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+/* =========================
+   PANELS
+========================= */
+
+.panel {
+  background: linear-gradient(
+    180deg,
+    rgba(15, 23, 42, 0.9),
+    rgba(2, 6, 23, 0.95)
+  );
+  border: 1px solid #1e293b;
+  border-radius: 18px;
+  padding: 1.5rem;
+}
+
+.panel-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.panel-header.between {
+  justify-content: space-between;
+}
+
+.panel-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.panel-body.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+/* =========================
+   METRICS
+========================= */
+
+.metric {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.metric .label {
+  font-size: 0.75rem;
+  color: #94a3b8;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.metric .value {
+  font-size: 1rem;
+  color: #e5e7eb;
+}
+
+/* =========================
+   MODE LABEL
+========================= */
+
+.mode {
+  margin-bottom: 1.5rem;
+  color: #94a3b8;
+  font-size: 0.85rem;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+.btn {
+  margin-top: 0.5rem;
+  align-self: flex-start;
+  padding: 0.45rem 0.9rem;
+  border-radius: 999px;
+  background: #020617;
+  border: 1px solid #1e293b;
+  color: #e5e7eb;
+  font-size: 0.75rem;
+  cursor: pointer;
+  position: relative;
+  z-index: 5;
+  pointer-events: auto;
+}
+
+.btn.ghost {
+  background: transparent;
+}
+
+button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+.panel {
+  position: relative;
+  z-index: 3;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 900px) {
+  .panels {
+    grid-template-columns: 1fr;
+  }
+}
