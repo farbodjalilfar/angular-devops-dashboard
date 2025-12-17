@@ -1,2 +1,11 @@
 <h2>Overview</h2>
-<p>System status and summary metrics will appear here.</p>
+
+<div class="stats-grid">
+  @for (stat of stats(); track stat.label) {
+    <app-stat-card
+      [label]="stat.label"
+      [value]="stat.value"
+      [hint]="stat.hint"
+    />
+  }
+</div>
