@@ -1,7 +1,6 @@
-import { Component, inject, signal, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { GithubService } from '../../services/github.service';
 import { DashboardStatsService } from '../../services/dashboard-stats.service';
 import { SystemHealthService } from '../../services/system-health.service';
 import { ActivityService } from '../../services/activity.service';
@@ -24,50 +23,29 @@ import { ActivityListComponent } from '../../components/activity-list/activity-l
   styleUrl: './overview.css'
 })
 export class OverviewComponent implements OnInit {
-  // Services
   private readonly statsService = inject(DashboardStatsService);
   private readonly healthService = inject(SystemHealthService);
   private readonly activityService = inject(ActivityService);
   private readonly settingsService = inject(SettingsService);
-  private readonly githubService = inject(GithubService);
 
-  // Existing data
+  // exposed signals
+  readonly stats = this.statsService.stats;
   readonly health = this.healthService.health;
   readonly activity = this.activityService.items;
   readonly isMockMode = this.settingsService.isMockMode;
 
-  // 👇 NEW: GitHub repo count
-  readonly repoCount = signal<number | null>(null);
-
-  // Stats (we’ll override Active Projects dynamically)
-  readonly stats = this.statsService.stats;
-
-  ngOnInit() {
-    this.loadRepositories();
-  }
-
-  private loadRepositories() {
+  ngOnInit(): void {
+    // Load GitHub data into overview stats
     const org = this.settingsService.settings().organization;
-
-    this.githubService.getRepositories(org).subscribe({
-      next: repos => {
-        this.repoCount.set(repos.length);
-        this.statsService.setActiveProjects(repos.length);
-      },
-      error: () => {
-        this.repoCount.set(null);
-        this.statsService.setActiveProjects(null);
-      }
-    });
+    this.statsService.loadFromGithub(org);
   }
 
-  // UI actions
-  cycleStatus() {
+  cycleStatus(): void {
     if (!this.isMockMode()) return;
     this.healthService.cycleStatus();
   }
 
-  addEvent() {
+  addEvent(): void {
     if (!this.isMockMode()) return;
     this.activityService.addMockEvent();
   }

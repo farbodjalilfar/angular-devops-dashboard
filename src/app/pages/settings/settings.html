@@ -1,23 +1,50 @@
-<div class="form">
-  <label>
-    GitHub Organization
-    <input [(ngModel)]="settings.organization" />
-  </label>
+<h2 class="page-title">Settings</h2>
 
-  <label>
-    Repositories (comma separated)
-    <input [(ngModel)]="settings.repositories" />
-  </label>
+<div class="settings-form">
 
-  <label>
-    Refresh Interval (seconds)
-    <input type="number" [(ngModel)]="settings.refreshInterval" />
-  </label>
+  <div class="field">
+    <label>Organization</label>
+    <input
+      type="text"
+      [(ngModel)]="form.organization"
+      placeholder="AcmeTech"
+    />
+  </div>
 
-  <label class="toggle">
-    <input type="checkbox" [(ngModel)]="settings.mockMode" />
-    Mock Mode
-  </label>
+  <div class="field">
+    <label>Repositories (comma separated)</label>
+    <input
+      type="text"
+      [(ngModel)]="form.repositories"
+      placeholder="frontend-app, backend-api"
+    />
+  </div>
 
-  <button (click)="save()">Save Settings</button>
+  <div class="field">
+    <label>Refresh interval (seconds)</label>
+    <input
+      type="number"
+      [(ngModel)]="form.refreshInterval"
+      placeholder="60"
+    />
+  </div>
+
+  <!-- ✅ SINGLE TOGGLE -->
+  <div class="toggle-row">
+    <span class="toggle-label">Enable mock mode</span>
+
+    <label class="toggle">
+      <input type="checkbox" [(ngModel)]="form.mockMode" />
+      <span class="slider"></span>
+    </label>
+  </div>
+
+  <button class="btn primary" (click)="save()">
+    Save Settings
+  </button>
+
 </div>
+<div class="toast" *ngIf="showSaved()">
+  ✅ Settings saved
+</div>
+

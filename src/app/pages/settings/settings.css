@@ -1,37 +1,130 @@
-.form {
-  max-width: 480px;
+.settings-form {
+  max-width: 600px;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 20px;
 }
 
-label {
+.field {
   display: flex;
   flex-direction: column;
-  gap: 0.3rem;
-  color: #e5e7eb;
+  gap: 6px;
 }
 
-input {
-  padding: 0.5rem;
-  border-radius: 8px;
-  border: 1px solid #1e293b;
-  background: #020617;
-  color: #e5e7eb;
+.field label {
+  font-size: 14px;
+  color: #cbd5e1;
 }
 
-.toggle {
-  flex-direction: row;
-  align-items: center;
-  gap: 0.6rem;
-}
-
-button {
-  margin-top: 1rem;
-  padding: 0.6rem;
+.field input {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 10px;
-  border: 1px solid #1e293b;
-  background: #111827;
+  padding: 10px 14px;
+  color: white;
+  outline: none;
+}
+
+.field input:focus {
+  border-color: #38bdf8;
+}
+
+/* 🔘 TOGGLE ROW */
+.toggle-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.toggle-label {
+  font-size: 14px;
   color: #e5e7eb;
+}
+
+/* 🔘 TOGGLE SWITCH */
+.toggle {
+  position: relative;
+  width: 46px;
+  height: 26px;
+}
+
+.toggle input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.slider::before {
+  content: '';
+  position: absolute;
+  height: 20px;
+  width: 20px;
+  left: 3px;
+  top: 3px;
+  background: white;
+  border-radius: 50%;
+  transition: 0.3s;
+}
+
+.toggle input:checked + .slider {
+  background: #22c55e;
+}
+
+.toggle input:checked + .slider::before {
+  transform: translateX(20px);
+}
+
+/* BUTTON */
+.btn.primary {
+  align-self: flex-start;
+  padding: 10px 18px;
+  border-radius: 12px;
+  border: none;
+  background: linear-gradient(135deg, #2563eb, #38bdf8);
+  color: white;
+  font-weight: 600;
   cursor: pointer;
 }
+/* 🔔 TOAST */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: rgba(20, 30, 50, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 12px 18px;
+  border-radius: 14px;
+  color: #e5e7eb;
+  font-size: 14px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+  animation: slideIn 0.3s ease, fadeOut 0.3s ease 1.7s forwards;
+}
+
+/* Animations */
+@keyframes slideIn {
+  from {
+    transform: translateY(10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+  }
+}
+

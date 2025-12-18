@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { HeaderComponent } from '../../layout/header/header';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-stack',
   standalone: true,
-  imports: [HeaderComponent],
+  imports: [CommonModule],
   templateUrl: './stack.html',
   styleUrl: './stack.css'
 })
