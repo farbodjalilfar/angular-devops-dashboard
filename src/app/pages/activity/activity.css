@@ -1,47 +1,43 @@
-.subtitle {
-  color: #94a3b8;
-  margin-bottom: 1rem;
-  font-size: 0.9rem;
+.activity-page {
+  max-width: 1100px;
 }
 
-/* FILTER BAR */
+.page-header {
+  margin-bottom: 20px;
+}
+
+.page-header h1 {
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
 .filters {
-  display: inline-flex;
-  gap: 0.25rem;
-  padding: 0.25rem;
-  border-radius: 999px;
-  background: rgba(15, 23, 42, 0.8);
-  border: 1px solid #1e293b;
-  margin-bottom: 1.75rem;
+  display: flex;
+  gap: 10px;
 }
 
-/* FILTER BUTTON */
-.filter-btn {
-  padding: 0.4rem 0.9rem;
-  border-radius: 999px;
-  font-size: 0.75rem;
+.filters button {
   background: transparent;
-  color: #94a3b8;
-  border: none;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #cbd5e1;
+  padding: 6px 14px;
+  border-radius: 999px;
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition: all 0.2s ease;
+}
+app-activity-list {
+  display: block;
+  margin-top: 1.5rem;
 }
 
-/* HOVER */
-.filter-btn:hover {
-  color: #e5e7eb;
-  background: rgba(148, 163, 184, 0.08);
-}
-
-/* ACTIVE */
-.filter-btn.active {
-  background: #020617;
+.filters button:hover {
+  border-color: #38bdf8;
   color: #38bdf8;
-  box-shadow: inset 0 0 0 1px #38bdf8;
 }
 
-/* FOCUS (keyboard accessibility) */
-.filter-btn:focus-visible {
-  outline: none;
-  box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.4);
+.filters button.active {
+  background: rgba(56, 189, 248, 0.15);
+  border-color: #38bdf8;
+  color: #38bdf8;
 }

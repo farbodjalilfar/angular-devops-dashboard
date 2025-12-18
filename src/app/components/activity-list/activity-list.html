@@ -1,24 +1,22 @@
-@for (item of items; track item.id) {
-  <div class="activity-row">
-
-    <!-- TYPE BADGE -->
+<div class="activity-card">
+  <div
+    class="activity-row"
+    *ngFor="let item of items"
+  >
     <span
       class="badge"
-      [class.deploy]="item.type === 'DEPLOY'"
-      [class.alert]="item.type === 'ALERT'"
+      [class.deploy]="item.type === 'deploy'"
+      [class.alert]="item.type === 'alert'"
     >
-      {{ item.type }}
+      {{ item.type | uppercase }}
     </span>
 
-    <!-- MESSAGE -->
     <span class="message">
       {{ item.message }}
     </span>
 
-    <!-- TIME -->
     <span class="time">
       {{ item.time }}
     </span>
-
   </div>
-}
+</div>

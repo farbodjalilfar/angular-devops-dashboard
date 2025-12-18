@@ -1,16 +1,33 @@
-.header {
-  height: 64px;
-  background: #020617;
-  color: #f8fafc;
+.app-header {
+  height: 72px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 2rem;
-  margin-left: 240px;
+  padding: 0 32px;
   border-bottom: 1px solid #1e293b;
+  background: linear-gradient(
+    180deg,
+    rgba(15, 23, 42, 0.9),
+    rgba(2, 6, 23, 0.95)
+  );
+}
+
+.app-header h1 {
+  font-size: 1.4rem;
+  font-weight: 600;
 }
 
 .status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   color: #22c55e;
-  font-weight: 500;
+  font-size: 0.85rem;
+}
+
+.status .dot {
+  width: 8px;
+  height: 8px;
+  background: #22c55e;
+  border-radius: 50%;
 }

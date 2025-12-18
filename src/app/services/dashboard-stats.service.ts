@@ -6,7 +6,7 @@ export class DashboardStatsService {
   private readonly _stats = signal<DashboardStat[]>([
     {
       label: 'Active Projects',
-      value: 6,
+      value: '—',
       hint: 'GitHub repositories'
     },
     {
@@ -27,4 +27,20 @@ export class DashboardStatsService {
   ]);
 
   readonly stats = this._stats.asReadonly();
+
+  /**
+   * 🔹 Update Active Projects stat dynamically (GitHub repos)
+   */
+  setActiveProjects(count: number | null) {
+    this._stats.update(stats =>
+      stats.map(stat =>
+        stat.label === 'Active Projects'
+          ? {
+              ...stat,
+              value: count === null ? '—' : count.toString()
+            }
+          : stat
+      )
+    );
+  }
 }

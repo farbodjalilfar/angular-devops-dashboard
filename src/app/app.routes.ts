@@ -6,8 +6,25 @@ import { SettingsComponent } from './pages/settings/settings';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'overview', pathMatch: 'full' },
-  { path: 'overview', component: OverviewComponent },
-  { path: 'stack', component: StackComponent },
-  { path: 'activity', component: ActivityComponent },
-  { path: 'settings', component: SettingsComponent }
+
+  {
+    path: 'overview',
+    component: OverviewComponent,
+    data: { title: 'Overview' }
+  },
+  {
+    path: 'stack',
+    component: StackComponent,
+    data: { title: 'Tech Stack' }
+  },
+  {
+    path: 'activity',
+    component: ActivityComponent,
+    data: { title: 'Activity' }
+  },
+  {
+    path: 'settings',
+    component: SettingsComponent,
+    data: { title: 'Settings' }
+  }
 ];

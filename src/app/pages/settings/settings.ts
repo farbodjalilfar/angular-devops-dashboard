@@ -5,7 +5,7 @@ import { SettingsService } from '../../services/settings.service';
 @Component({
   selector: 'app-settings',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, HeaderComponent],
   templateUrl: './settings.html',
   styleUrl: './settings.css'
 })

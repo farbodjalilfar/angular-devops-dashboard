@@ -1,32 +1,34 @@
-import { Component, signal, computed } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
 import { ActivityService } from '../../services/activity.service';
+import { ActivityType } from '../../models/activity.model';
 import { ActivityListComponent } from '../../components/activity-list/activity-list';
-import { ActivityType } from '../../models/activity-item.model';
 
 @Component({
   selector: 'app-activity',
   standalone: true,
-  imports: [ActivityListComponent],
+  imports: [CommonModule, ActivityListComponent],
   templateUrl: './activity.html',
   styleUrl: './activity.css'
 })
 export class ActivityComponent {
-  private readonly activityService = new ActivityService();
+  private readonly activityService = inject(ActivityService);
 
-  // filter can be "all" OR a valid ActivityType
-  readonly filter = signal<'all' | ActivityType>('all');
+  // 🔹 filter state
+  readonly filter = signal<ActivityType | 'all'>('all');
 
-  // all activity items
-  readonly activity = this.activityService.items;
+  // 🔹 all items
+  readonly items = this.activityService.items;
 
-  // derived filtered list
-  readonly filteredActivity = computed(() => {
+  // 🔹 derived filtered list
+  readonly filteredItems = computed(() => {
     const f = this.filter();
-    if (f === 'all') return this.activity();
-    return this.activity().filter(item => item.type === f);
+    if (f === 'all') return this.items();
+    return this.items().filter(item => item.type === f);
   });
 
-  setFilter(type: 'all' | ActivityType) {
-    this.filter.set(type);
+  setFilter(value: ActivityType | 'all') {
+    this.filter.set(value);
   }
 }

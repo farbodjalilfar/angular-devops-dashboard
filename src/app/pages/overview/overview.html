@@ -1,12 +1,10 @@
-<h2>Overview</h2>
-
 <p class="mode">
   Mode:
-  <strong>{{ isMockMode() ? 'Mock Data' : 'Live Data (coming soon)' }}</strong>
+  <strong>{{ isMockMode() ? 'Mock Data' : 'Live Data' }}</strong>
 </p>
 
 <!-- ===================== -->
-<!-- STAT CARDS -->
+<!-- Stats -->
 <!-- ===================== -->
 <div class="stats-grid">
   @for (stat of stats(); track stat.label) {
@@ -19,15 +17,15 @@
 </div>
 
 <!-- ===================== -->
-<!-- PANELS -->
+<!-- Main Panels -->
 <!-- ===================== -->
 <div class="panels">
 
-  <!-- SYSTEM HEALTH PANEL -->
+  <!-- System Health -->
   <section class="panel">
     <div class="panel-header between">
       <h3>System Health</h3>
-      <app-status-badge [status]="health().status"></app-status-badge>
+      <app-status-badge [status]="health().status" />
     </div>
 
     <div class="panel-body grid">
@@ -61,7 +59,7 @@
     </div>
   </section>
 
-  <!-- RECENT ACTIVITY PANEL -->
+  <!-- Recent Activity -->
   <section class="panel">
     <div class="panel-header between">
       <h3>Recent Activity</h3>
@@ -76,7 +74,8 @@
     </div>
 
     <div class="panel-body">
-      <app-activity-list [items]="activity()"></app-activity-list>
+      <!-- 🔑 Shared UI component (same as Activity page) -->
+      <app-activity-list [items]="activity()" />
     </div>
   </section>
 

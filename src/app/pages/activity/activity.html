@@ -1,14 +1,8 @@
 <h2>Activity</h2>
 
-<p class="subtitle">
-  System events and operational history
-</p>
-
-<!-- FILTER BUTTONS -->
 <div class="filters">
-
   <button
-    class="filter-btn"
+    class="pill"
     [class.active]="filter() === 'all'"
     (click)="setFilter('all')"
   >
@@ -16,28 +10,21 @@
   </button>
 
   <button
-    class="filter-btn"
-    [class.active]="filter() === 'DEPLOY'"
-    (click)="setFilter('DEPLOY')"
+    class="pill"
+    [class.active]="filter() === 'deploy'"
+    (click)="setFilter('deploy')"
   >
     Deploys
   </button>
 
   <button
-    class="filter-btn"
-    [class.active]="filter() === 'ALERT'"
-    (click)="setFilter('ALERT')"
+    class="pill"
+    [class.active]="filter() === 'alert'"
+    (click)="setFilter('alert')"
   >
     Alerts
   </button>
-
 </div>
 
-<!-- ACTIVITY LIST PANEL -->
-<section class="panel">
-  <div class="panel-body">
-    <app-activity-list
-      [items]="filteredActivity()"
-    ></app-activity-list>
-  </div>
-</section>
+<!-- 🔑 SAME UI AS OVERVIEW -->
+<app-activity-list [items]="filteredItems()" />
