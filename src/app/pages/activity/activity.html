@@ -1,2 +1,43 @@
 <h2>Activity</h2>
-<p>Recent projects and system activity will appear here.</p>
+
+<p class="subtitle">
+  System events and operational history
+</p>
+
+<!-- FILTER BUTTONS -->
+<div class="filters">
+
+  <button
+    class="filter-btn"
+    [class.active]="filter() === 'all'"
+    (click)="setFilter('all')"
+  >
+    All
+  </button>
+
+  <button
+    class="filter-btn"
+    [class.active]="filter() === 'DEPLOY'"
+    (click)="setFilter('DEPLOY')"
+  >
+    Deploys
+  </button>
+
+  <button
+    class="filter-btn"
+    [class.active]="filter() === 'ALERT'"
+    (click)="setFilter('ALERT')"
+  >
+    Alerts
+  </button>
+
+</div>
+
+<!-- ACTIVITY LIST PANEL -->
+<section class="panel">
+  <div class="panel-body">
+    <app-activity-list
+      [items]="filteredActivity()"
+    ></app-activity-list>
+  </div>
+</section>

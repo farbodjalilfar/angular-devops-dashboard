@@ -1,9 +1,24 @@
-<ul class="list">
-  @for (item of items; track item.id) {
-    <li class="row">
-      <span class="type">{{ item.type }}</span>
-      <span class="msg">{{ item.message }}</span>
-      <span class="time">{{ item.time }}</span>
-    </li>
-  }
-</ul>
+@for (item of items; track item.id) {
+  <div class="activity-row">
+
+    <!-- TYPE BADGE -->
+    <span
+      class="badge"
+      [class.deploy]="item.type === 'DEPLOY'"
+      [class.alert]="item.type === 'ALERT'"
+    >
+      {{ item.type }}
+    </span>
+
+    <!-- MESSAGE -->
+    <span class="message">
+      {{ item.message }}
+    </span>
+
+    <!-- TIME -->
+    <span class="time">
+      {{ item.time }}
+    </span>
+
+  </div>
+}

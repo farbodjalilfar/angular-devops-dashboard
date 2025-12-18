@@ -1,4 +1,4 @@
-export type ActivityType = 'DEPLOY' | 'ALERT' | 'INCIDENT' | 'CONFIG';
+export type ActivityType = 'DEPLOY' | 'ALERT';
 
 export interface ActivityItem {
   id: string;

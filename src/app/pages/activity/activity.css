@@ -1,0 +1,47 @@
+.subtitle {
+  color: #94a3b8;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+
+/* FILTER BAR */
+.filters {
+  display: inline-flex;
+  gap: 0.25rem;
+  padding: 0.25rem;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.8);
+  border: 1px solid #1e293b;
+  margin-bottom: 1.75rem;
+}
+
+/* FILTER BUTTON */
+.filter-btn {
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  background: transparent;
+  color: #94a3b8;
+  border: none;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+/* HOVER */
+.filter-btn:hover {
+  color: #e5e7eb;
+  background: rgba(148, 163, 184, 0.08);
+}
+
+/* ACTIVE */
+.filter-btn.active {
+  background: #020617;
+  color: #38bdf8;
+  box-shadow: inset 0 0 0 1px #38bdf8;
+}
+
+/* FOCUS (keyboard accessibility) */
+.filter-btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.4);
+}
