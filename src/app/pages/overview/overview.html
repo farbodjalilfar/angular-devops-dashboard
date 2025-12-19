@@ -3,9 +3,12 @@
   <strong>{{ isMockMode() ? 'Mock Data' : 'Live Data' }}</strong>
 </p>
 
-<!-- ===================== -->
-<!-- Stats -->
-<!-- ===================== -->
+@if (error()) {
+  <div class="error-banner">
+    ⚠️ {{ error() }}
+  </div>
+}
+
 <div class="stats-grid">
   @for (stat of stats(); track stat.label) {
     <app-stat-card
@@ -16,12 +19,8 @@
   }
 </div>
 
-<!-- ===================== -->
-<!-- Main Panels -->
-<!-- ===================== -->
 <div class="panels">
-
-  <!-- System Health -->
+  <!-- SYSTEM HEALTH -->
   <section class="panel">
     <div class="panel-header between">
       <h3>System Health</h3>
@@ -59,11 +58,10 @@
     </div>
   </section>
 
-  <!-- Recent Activity -->
+  <!-- ACTIVITY -->
   <section class="panel">
     <div class="panel-header between">
       <h3>Recent Activity</h3>
-
       <button
         class="btn ghost"
         (click)="addEvent()"
@@ -74,9 +72,7 @@
     </div>
 
     <div class="panel-body">
-      <!-- 🔑 Shared UI component (same as Activity page) -->
       <app-activity-list [items]="activity()" />
     </div>
   </section>
-
 </div>

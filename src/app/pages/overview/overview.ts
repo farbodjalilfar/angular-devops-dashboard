@@ -28,24 +28,22 @@ export class OverviewComponent implements OnInit {
   private readonly activityService = inject(ActivityService);
   private readonly settingsService = inject(SettingsService);
 
-  // exposed signals
   readonly stats = this.statsService.stats;
+  readonly error = this.statsService.error;
   readonly health = this.healthService.health;
   readonly activity = this.activityService.items;
   readonly isMockMode = this.settingsService.isMockMode;
 
-  ngOnInit(): void {
-    // Load GitHub data into overview stats
-    const org = this.settingsService.settings().organization;
-    this.statsService.loadFromGithub(org);
+  ngOnInit() {
+    this.statsService.load();
   }
 
-  cycleStatus(): void {
+  cycleStatus() {
     if (!this.isMockMode()) return;
     this.healthService.cycleStatus();
   }
 
-  addEvent(): void {
+  addEvent() {
     if (!this.isMockMode()) return;
     this.activityService.addMockEvent();
   }
