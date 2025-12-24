@@ -148,8 +148,8 @@ button:disabled {
 }
 
 .avatar {
-  width: 100px;
-  height: 100px;
+  width: 200px;
+  height: 200px;
   border-radius: 999px;
   border: 2px solid #1e293b;
   object-fit: cover;
@@ -162,9 +162,9 @@ button:disabled {
 }
 
 .identity .name {
-  font-size: 1rem;
-  font-weight: 600;
-  color: #e5e7eb;
+  font-size: 2rem;
+  font-weight: 800;
+  color: #8a8787;
 }
 
 .identity .sub {

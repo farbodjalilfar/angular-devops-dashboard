@@ -1,10 +1,7 @@
 import { Component, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
 import { SettingsService } from '../../services/settings.service';
-import { DashboardStatsService } from '../../services/dashboard-stats.service';
-import { AppSettings } from '../../models/settings.model';
 
 @Component({
   selector: 'app-settings',
@@ -15,19 +12,26 @@ import { AppSettings } from '../../models/settings.model';
 })
 export class SettingsComponent {
   private readonly settingsService = inject(SettingsService);
-  private readonly dashboardStatsService = inject(DashboardStatsService);
 
-  // ✅ FULL settings copy
-  form: AppSettings = { ...this.settingsService.settings() };
+  // local editable copy
+  form = {
+    githubName: this.settingsService.settings().githubName,
+    accountType: this.settingsService.settings().accountType,
+    mockMode: this.settingsService.settings().mockMode
+  };
 
-  showSaved = signal(false);
+  // ✅ FIXED: proper signal
+  readonly showSaved = signal(false);
 
   save() {
-    this.settingsService.update(this.form);
+    this.settingsService.update({
+      ...this.settingsService.settings(),
+      githubName: this.form.githubName,
+      accountType: this.form.accountType,
+      mockMode: this.form.mockMode
+    });
 
-    // 🔥 force reload
-    this.dashboardStatsService.load();
-
+    // show toast briefly
     this.showSaved.set(true);
     setTimeout(() => this.showSaved.set(false), 2000);
   }
