@@ -135,3 +135,39 @@ button:disabled {
   margin-bottom: 1.5rem;
   font-size: 0.9rem;
 }
+
+/* =========================
+   OVERVIEW HEADER (AVATAR)
+========================= */
+
+.overview-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 999px;
+  border: 2px solid #1e293b;
+  object-fit: cover;
+  background: #020617;
+}
+
+.identity {
+  display: flex;
+  flex-direction: column;
+}
+
+.identity .name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #e5e7eb;
+}
+
+.identity .sub {
+  font-size: 0.75rem;
+  color: #94a3b8;
+}

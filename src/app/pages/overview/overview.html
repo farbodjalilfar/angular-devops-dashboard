@@ -1,3 +1,17 @@
+@if (avatarUrl()) {
+  <div class="overview-header">
+    <img
+      class="avatar"
+      [src]="avatarUrl()"
+      alt="GitHub avatar"
+    />
+    <div class="identity">
+      <div class="name">{{ githubLabel() }}</div>
+      <div class="sub">GitHub {{ githubType() }}</div>
+    </div>
+  </div>
+}
+
 <p class="mode">
   Mode:
   <strong>{{ isMockMode() ? 'Mock Data' : 'Live Data' }}</strong>

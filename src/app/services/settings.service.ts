@@ -9,7 +9,8 @@ export class SettingsService {
     refreshInterval: 60,
     mockMode: false,
 
-    // ✅ DEFAULT
+    // ✅ ADD THESE
+    githubName: 'google',
     accountType: 'org'
   });
 

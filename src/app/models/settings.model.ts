@@ -4,6 +4,7 @@ export interface AppSettings {
   refreshInterval: number;
   mockMode: boolean;
 
-  // ✅ REQUIRED
+  // ✅ REQUIRED (you already introduced these earlier)
+  githubName: string;
   accountType: 'org' | 'user';
 }

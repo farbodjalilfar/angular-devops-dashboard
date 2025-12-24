@@ -1,52 +1,45 @@
-<h2>Settings</h2>
+<h2 class="page-title">Settings</h2>
 
-<div class="panel">
+<div class="panel settings-panel">
   <div class="panel-body">
 
-    <!-- GitHub name -->
-    <label class="label">GitHub Account</label>
-    <input
-      class="input"
-      type="text"
-      [(ngModel)]="form.organization"
-      placeholder="e.g. google, netflix, torvalds"
-    />
+    <div class="field">
+      <label>GitHub Account</label>
+      <input
+        class="input"
+        [(ngModel)]="form.githubName"
+        placeholder="e.g. google, torvalds"
+      />
+    </div>
 
-    <!-- Account type -->
-    <div class="radio-group">
-      <label>
-        <input
-          type="radio"
-          name="type"
-          [checked]="form.accountType === 'org'"
-          (change)="setType('org')"
-        />
-        Organization
-      </label>
+    <div class="field">
+      <label>Account Type</label>
+      <div class="radio-group">
+        <label>
+          <input type="radio" value="org" [(ngModel)]="form.accountType" />
+          Organization
+        </label>
 
+        <label>
+          <input type="radio" value="user" [(ngModel)]="form.accountType" />
+          User
+        </label>
+      </div>
+    </div>
+
+    <div class="field checkbox-field">
       <label>
-        <input
-          type="radio"
-          name="type"
-          [checked]="form.accountType === 'user'"
-          (change)="setType('user')"
-        />
-        User
+        <input type="checkbox" [(ngModel)]="form.mockMode" />
+        Enable mock data
       </label>
     </div>
 
-    <!-- Mock mode -->
-    <label class="checkbox">
-      <input type="checkbox" [(ngModel)]="form.mockMode" />
-      Enable mock data
-    </label>
+    <button class="btn primary" (click)="save()">
+      Save Settings
+    </button>
 
-    <!-- Save -->
-    <button class="btn" (click)="save()">Save settings</button>
-
-    <!-- Saved toast -->
     <div class="toast" *ngIf="showSaved">
-      ✅ Settings saved
+      Settings saved ✔
     </div>
 
   </div>

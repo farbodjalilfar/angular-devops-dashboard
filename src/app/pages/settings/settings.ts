@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -15,28 +15,20 @@ import { AppSettings } from '../../models/settings.model';
 })
 export class SettingsComponent {
   private readonly settingsService = inject(SettingsService);
-  private readonly statsService = inject(DashboardStatsService);
+  private readonly dashboardStatsService = inject(DashboardStatsService);
 
-  // ✅ PLAIN OBJECT (not signal)
-  form: AppSettings = {
-    organization: this.settingsService.settings().organization,
-    repositories: this.settingsService.settings().repositories,
-    refreshInterval: this.settingsService.settings().refreshInterval,
-    mockMode: this.settingsService.settings().mockMode,
-    accountType: this.settingsService.settings().accountType
-  };
+  // ✅ FULL settings copy
+  form: AppSettings = { ...this.settingsService.settings() };
 
-  showSaved = false;
-
-  setType(type: 'org' | 'user') {
-    this.form.accountType = type;
-  }
+  showSaved = signal(false);
 
   save() {
     this.settingsService.update(this.form);
-    this.statsService.load(); // refresh overview
 
-    this.showSaved = true;
-    setTimeout(() => (this.showSaved = false), 2000);
+    // 🔥 force reload
+    this.dashboardStatsService.load();
+
+    this.showSaved.set(true);
+    setTimeout(() => this.showSaved.set(false), 2000);
   }
 }

@@ -17,47 +17,53 @@ export interface GithubRepo {
 
 export interface GithubOrg {
   login: string;
-  public_repos: number;
   avatar_url: string;
+  public_repos: number;
 }
 
 export interface GithubUser {
   login: string;
-  public_repos: number;
   avatar_url: string;
+  public_repos: number;
 }
 
 /* =========================
    SERVICE
 ========================= */
 
-@Injectable({ providedIn: 'root' })
+@Injectable({
+  providedIn: 'root'
+})
 export class GithubService {
   private readonly http = inject(HttpClient);
 
-  // 🔹 ORG metadata
+  /* =========================
+     ORGANIZATION
+  ========================= */
+
   getOrganization(org: string): Observable<GithubOrg> {
     return this.http.get<GithubOrg>(
       `https://api.github.com/orgs/${org}`
     );
   }
 
-  // 🔹 USER metadata
+  getOrganizationRepos(org: string): Observable<GithubRepo[]> {
+    return this.http.get<GithubRepo[]>(
+      `https://api.github.com/orgs/${org}/repos?per_page=100`
+    );
+  }
+
+  /* =========================
+     USER
+  ========================= */
+
   getUser(username: string): Observable<GithubUser> {
     return this.http.get<GithubUser>(
       `https://api.github.com/users/${username}`
     );
   }
 
-  // 🔹 ORG repos (first 100)
-  getOrgRepositories(org: string): Observable<GithubRepo[]> {
-    return this.http.get<GithubRepo[]>(
-      `https://api.github.com/orgs/${org}/repos?per_page=100`
-    );
-  }
-
-  // 🔹 USER repos (first 100)
-  getUserRepositories(username: string): Observable<GithubRepo[]> {
+  getUserRepos(username: string): Observable<GithubRepo[]> {
     return this.http.get<GithubRepo[]>(
       `https://api.github.com/users/${username}/repos?per_page=100`
     );
