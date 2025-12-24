@@ -1,46 +1,65 @@
-<h2 class="page-title">Settings</h2>
+<h2 class="page-title"> Settings</h2>
 
-<div class="panel settings-panel">
+<section class="panel">
   <div class="panel-body">
 
+    <!-- GitHub account -->
     <div class="field">
       <label>GitHub Account</label>
       <input
         class="input"
+        type="text"
         [(ngModel)]="form.githubName"
         placeholder="e.g. google, torvalds"
       />
     </div>
 
+    <!-- Account type -->
     <div class="field">
       <label>Account Type</label>
+
       <div class="radio-group">
         <label>
-          <input type="radio" value="org" [(ngModel)]="form.accountType" />
+          <input
+            type="radio"
+            name="type"
+            value="org"
+            [(ngModel)]="form.accountType"
+          />
           Organization
         </label>
 
         <label>
-          <input type="radio" value="user" [(ngModel)]="form.accountType" />
+          <input
+            type="radio"
+            name="type"
+            value="user"
+            [(ngModel)]="form.accountType"
+          />
           User
         </label>
       </div>
     </div>
 
-    <div class="field checkbox-field">
+    <!-- Mock mode -->
+    <div class="field checkbox">
       <label>
         <input type="checkbox" [(ngModel)]="form.mockMode" />
         Enable mock data
       </label>
     </div>
 
+    <!-- Save -->
     <button class="btn primary" (click)="save()">
-      Save Settings
+      Save settings
     </button>
 
-    <div class="toast" *ngIf="showSaved">
-      Settings saved ✔
-    </div>
+    <!-- Toast -->
+    @if (showSaved()) {
+      <div class="toast">
+        ✅ Settings saved
+      </div>
+    }
 
   </div>
-</div>
+</section>
