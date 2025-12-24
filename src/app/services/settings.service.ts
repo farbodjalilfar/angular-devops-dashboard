@@ -4,10 +4,13 @@ import { AppSettings } from '../models/settings.model';
 @Injectable({ providedIn: 'root' })
 export class SettingsService {
   private readonly _settings = signal<AppSettings>({
-    organization: 'AcmeTech',
-    repositories: 'frontend-app, backend-api',
+    organization: 'google',
+    repositories: '',
     refreshInterval: 60,
-    mockMode: true
+    mockMode: false,
+
+    // ✅ DEFAULT
+    accountType: 'org'
   });
 
   readonly settings = this._settings.asReadonly();

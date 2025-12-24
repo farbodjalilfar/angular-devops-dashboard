@@ -1,6 +1,9 @@
 import { Injectable, signal, inject } from '@angular/core';
 import { DashboardStat } from '../models/dashboard-stats.model';
-import { GithubService, GithubRepo } from './github.service';
+import {
+  GithubService,
+  GithubRepo
+} from './github.service';
 import { SettingsService } from './settings.service';
 
 @Injectable({ providedIn: 'root' })
@@ -8,7 +11,6 @@ export class DashboardStatsService {
   private readonly github = inject(GithubService);
   private readonly settings = inject(SettingsService);
 
-  // Error message for UI
   readonly error = signal<string | null>(null);
 
   private readonly _stats = signal<DashboardStat[]>([
@@ -21,14 +23,26 @@ export class DashboardStatsService {
   readonly stats = this._stats.asReadonly();
 
   load() {
-    const org = this.settings.settings().organization?.trim();
-    if (!org) return;
+    const settings = this.settings.settings();
+    const name = settings.organization?.trim();
+    const type = settings.accountType; // 'org' | 'user'
+
+    if (!name) return;
 
     this.error.set(null);
 
-    /* =========================
-       1️⃣ TOTAL REPOS (NO LIMIT)
-    ========================= */
+    if (type === 'org') {
+      this.loadOrganization(name);
+    } else {
+      this.loadUser(name);
+    }
+  }
+
+  /* =========================
+     ORG FLOW
+  ========================= */
+
+  private loadOrganization(org: string) {
     this.github.getOrganization(org).subscribe({
       next: orgData => {
         this.updateStat('Active Projects', orgData.public_repos);
@@ -36,30 +50,54 @@ export class DashboardStatsService {
       error: () => this.handleError()
     });
 
-    /* =========================
-       2️⃣ REPOS (FIRST 100)
-    ========================= */
-    this.github.getRepositories(org).subscribe({
-      next: (repos: GithubRepo[]) => {
-        if (!repos.length) {
-          this.handleError();
-          return;
-        }
+    this.github.getOrgRepositories(org).subscribe({
+      next: repos => this.processRepos(repos),
+      error: () => this.handleError()
+    });
+  }
 
-        const languages = new Set(
-          repos.map(r => r.language).filter(Boolean)
-        );
+  /* =========================
+     USER FLOW
+  ========================= */
 
-        const latest = repos
-          .map(r => new Date(r.updated_at))
-          .sort((a: Date, b: Date) => b.getTime() - a.getTime())[0];
-
-        this.updateStat('Technologies', languages.size);
-        this.updateStat('System Status', 'Connected');
-        this.updateStat('Last Update', latest.toDateString());
+  private loadUser(username: string) {
+    this.github.getUser(username).subscribe({
+      next: user => {
+        this.updateStat('Active Projects', user.public_repos);
       },
       error: () => this.handleError()
     });
+
+    this.github.getUserRepositories(username).subscribe({
+      next: repos => this.processRepos(repos),
+      error: () => this.handleError()
+    });
+  }
+
+  /* =========================
+     SHARED LOGIC
+  ========================= */
+
+  private processRepos(repos: GithubRepo[]) {
+    if (!repos.length) {
+      this.handleError();
+      return;
+    }
+
+    const languages = new Set(
+      repos.map(r => r.language).filter(Boolean)
+    );
+
+    const latest = repos
+      .map(r => new Date(r.updated_at))
+      .sort((a, b) => b.getTime() - a.getTime())[0];
+
+    this.updateStat('Technologies', languages.size);
+    this.updateStat('System Status', 'Connected');
+    this.updateStat(
+      'Last Update',
+      latest ? latest.toDateString() : '-'
+    );
   }
 
   /* =========================
@@ -75,12 +113,12 @@ export class DashboardStatsService {
   }
 
   private handleError() {
-    this.error.set('Organization not found');
+    this.error.set('Account not found');
 
     this._stats.set([
       { label: 'Active Projects', value: '-', hint: 'GitHub repositories' },
       { label: 'Technologies', value: '-', hint: 'Detected languages' },
-      { label: 'System Status', value: 'Error', hint: 'Invalid organization' },
+      { label: 'System Status', value: 'Error', hint: 'Invalid account' },
       { label: 'Last Update', value: '-', hint: '—' }
     ]);
   }

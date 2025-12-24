@@ -1,50 +1,53 @@
-<h2 class="page-title">Settings</h2>
+<h2>Settings</h2>
 
-<div class="settings-form">
+<div class="panel">
+  <div class="panel-body">
 
-  <div class="field">
-    <label>Organization</label>
+    <!-- GitHub name -->
+    <label class="label">GitHub Account</label>
     <input
+      class="input"
       type="text"
       [(ngModel)]="form.organization"
-      placeholder="AcmeTech"
+      placeholder="e.g. google, netflix, torvalds"
     />
-  </div>
 
-  <div class="field">
-    <label>Repositories (comma separated)</label>
-    <input
-      type="text"
-      [(ngModel)]="form.repositories"
-      placeholder="frontend-app, backend-api"
-    />
-  </div>
+    <!-- Account type -->
+    <div class="radio-group">
+      <label>
+        <input
+          type="radio"
+          name="type"
+          [checked]="form.accountType === 'org'"
+          (change)="setType('org')"
+        />
+        Organization
+      </label>
 
-  <div class="field">
-    <label>Refresh interval (seconds)</label>
-    <input
-      type="number"
-      [(ngModel)]="form.refreshInterval"
-      placeholder="60"
-    />
-  </div>
+      <label>
+        <input
+          type="radio"
+          name="type"
+          [checked]="form.accountType === 'user'"
+          (change)="setType('user')"
+        />
+        User
+      </label>
+    </div>
 
-  <!-- ✅ SINGLE TOGGLE -->
-  <div class="toggle-row">
-    <span class="toggle-label">Enable mock mode</span>
-
-    <label class="toggle">
+    <!-- Mock mode -->
+    <label class="checkbox">
       <input type="checkbox" [(ngModel)]="form.mockMode" />
-      <span class="slider"></span>
+      Enable mock data
     </label>
+
+    <!-- Save -->
+    <button class="btn" (click)="save()">Save settings</button>
+
+    <!-- Saved toast -->
+    <div class="toast" *ngIf="showSaved">
+      ✅ Settings saved
+    </div>
+
   </div>
-
-  <button class="btn primary" (click)="save()">
-    Save Settings
-  </button>
-
 </div>
-<div class="toast" *ngIf="showSaved()">
-  ✅ Settings saved
-</div>
-
