@@ -31,14 +31,6 @@
   border: 1px solid #1e293b;
 }
 
-.tag.live {
-  color: #22c55e;
-}
-
-.tag.planned {
-  color: #f59e0b;
-}
-
 /* HEADER */
 .panel-header {
   display: flex;
@@ -73,4 +65,136 @@
 .lang-info span {
   font-size: 12px;
   color: rgba(255, 255, 255, 0.5);
+}
+
+.clickable {
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.clickable:hover {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+/* MODAL */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.2s ease;
+}
+
+.modal-content {
+  background: var(--bg-card);
+  backdrop-filter: var(--glass-blur);
+  border: var(--surface-border);
+  border-radius: 24px;
+  padding: 1.5rem;
+  width: 90%;
+  max-width: 500px;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: var(--surface-border);
+}
+
+.modal-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.modal-title h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  color: var(--text-main);
+}
+
+.lang-icon.large {
+  width: 32px;
+  height: 32px;
+}
+
+.repo-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.repo-list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 0;
+  border-bottom: var(--surface-border);
+}
+
+.repo-list li:last-child {
+  border-bottom: none;
+}
+
+.repo-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.repo-info strong {
+  color: var(--text-main);
+  font-size: 0.95rem;
+}
+
+.stars {
+  font-size: 0.75rem;
+  color: #fbbf24;
+}
+
+.btn.icon-only {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn.small {
+  padding: 0.3rem 0.8rem;
+  font-size: 0.75rem;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }

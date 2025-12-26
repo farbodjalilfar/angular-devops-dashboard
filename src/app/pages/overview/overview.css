@@ -20,14 +20,12 @@
 ========================= */
 
 .panel {
-  background: linear-gradient(
-    180deg,
-    rgba(15, 23, 42, 0.9),
-    rgba(2, 6, 23, 0.95)
-  );
-  border: 1px solid #1e293b;
-  border-radius: 18px;
+  background: var(--bg-surface);
+  backdrop-filter: var(--glass-blur);
+  border: var(--surface-border);
+  border-radius: 24px;
   padding: 1.5rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
 .panel-header {
@@ -65,53 +63,63 @@
 
 .metric .label {
   font-size: 0.75rem;
-  color: #94a3b8;
+  color: var(--text-secondary);
   letter-spacing: 0.05em;
   text-transform: uppercase;
 }
 
 .metric .value {
   font-size: 1rem;
-  color: #e5e7eb;
+  color: var(--text-main);
+  font-weight: 500;
 }
 
-/* =========================
-   MODE LABEL
-========================= */
+/* ... */
 
 .mode {
   margin-bottom: 1.5rem;
-  color: #94a3b8;
+  color: var(--text-secondary);
   font-size: 0.85rem;
 }
 
-/* =========================
-   BUTTONS
-========================= */
-
+/* BUTTONS */
 .btn {
   margin-top: 0.5rem;
   align-self: flex-start;
-  padding: 0.45rem 0.9rem;
+  padding: 0.5rem 1rem;
   border-radius: 999px;
-  background: #020617;
-  border: 1px solid #1e293b;
-  color: #e5e7eb;
+  background: rgba(255, 255, 255, 0.03);
+  border: var(--surface-border);
+  color: var(--text-main);
   font-size: 0.75rem;
+  font-weight: 500;
   cursor: pointer;
   position: relative;
   z-index: 5;
-  pointer-events: auto;
+  transition: all 0.2s ease;
+}
+
+.btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
 }
 
 .btn.ghost {
   background: transparent;
+  border-color: transparent;
+  color: var(--text-secondary);
+}
+
+.btn.ghost:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-main);
 }
 
 button:disabled {
   opacity: 0.4;
   cursor: not-allowed;
 }
+
 .panel {
   position: relative;
   z-index: 3;
@@ -126,6 +134,7 @@ button:disabled {
     grid-template-columns: 1fr;
   }
 }
+
 .error-banner {
   background: rgba(239, 68, 68, 0.12);
   border: 1px solid #ef4444;

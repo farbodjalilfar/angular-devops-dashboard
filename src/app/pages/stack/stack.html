@@ -25,7 +25,7 @@
         <strong>No languages found</strong>
       </li>
       } @else {
-      <li *ngFor="let lang of languages()" class="stack-item">
+      <li *ngFor="let lang of languages()" class="stack-item clickable" (click)="selectLanguage(lang)">
         <img [src]="lang.logo" [alt]="lang.name" class="lang-icon" />
         <div class="lang-info">
           <strong>{{ lang.name }}</strong>
@@ -73,3 +73,28 @@
   </section>
 
 </div>
+
+<!-- MODAL -->
+@if (selectedLanguage()) {
+<div class="modal-backdrop" (click)="closeModal()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <div class="modal-title">
+        <img [src]="selectedLanguage()!.logo" class="lang-icon large" />
+        <h3>{{ selectedLanguage()!.name }} Repositories</h3>
+      </div>
+      <button class="btn ghost icon-only" (click)="closeModal()">✕</button>
+    </div>
+
+    <ul class="repo-list">
+      <li *ngFor="let repo of selectedLanguage()!.repos">
+        <div class="repo-info">
+          <strong>{{ repo.name }}</strong>
+          <span class="stars">★ {{ repo.stars }}</span>
+        </div>
+        <a [href]="repo.url" target="_blank" class="btn small">View</a>
+      </li>
+    </ul>
+  </div>
+</div>
+}

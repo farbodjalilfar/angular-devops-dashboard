@@ -1,9 +1,19 @@
 :root {
-  --bg-dark: #0b0d10;
-  --bg-card: #141821;
-  --text-main: #f1f5f9;
-  --text-muted: #94a3b8;
-  --accent: #7c3aed;
+  /* Rich Dark Theme Palette */
+  --bg-dark: #0B0E14;
+  --bg-surface: rgba(30, 41, 59, 0.4);
+  /* Glassmorphic surface */
+  --bg-card: rgba(15, 23, 42, 0.6);
+
+  --primary-gradient: linear-gradient(135deg, #6366f1, #8b5cf6);
+  --surface-border: 1px solid rgba(148, 163, 184, 0.1);
+  --glass-blur: blur(12px);
+
+  --text-main: #F8FAFC;
+  --text-secondary: #94A3B8;
+  --text-accent: #8b5cf6;
+
+  --shadow-glow: 0 0 20px rgba(139, 92, 246, 0.15);
 }
 
 * {
@@ -13,6 +23,8 @@
 body {
   margin: 0;
   font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-  background: radial-gradient(circle at top, #111827, #020617);
+  background: radial-gradient(circle at top center, #1e1b4b, #0B0E14 40%);
+  background-attachment: fixed;
   color: var(--text-main);
+  min-height: 100vh;
 }
