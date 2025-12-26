@@ -1,30 +1,38 @@
-
 <p class="subtitle">
   Technologies used and planned for this dashboard
 </p>
 
 <div class="stack-grid">
 
-  <!-- FRONTEND -->
+  <!-- LANGUAGES -->
   <section class="panel">
     <div class="panel-header">
-      <h3>Frontend</h3>
+      <h3>Top Languages</h3>
       <span class="tag live">Live</span>
     </div>
 
     <ul class="stack-list">
-      <li>
-        <strong>Angular</strong>
-        <span>Standalone components, signals</span>
+      @if (loading()) {
+      <li *ngFor="let i of [1, 2, 3, 4]" class="stack-item">
+        <app-skeleton width="24px" height="24px" shape="circle"></app-skeleton>
+        <div style="flex: 1">
+          <app-skeleton width="60%" height="14px" style="margin-bottom: 4px"></app-skeleton>
+          <app-skeleton width="40%" height="12px"></app-skeleton>
+        </div>
       </li>
+      } @else if (languages().length === 0) {
       <li>
-        <strong>TypeScript</strong>
-        <span>Strict typing, interfaces</span>
+        <strong>No languages found</strong>
       </li>
-      <li>
-        <strong>CSS</strong>
-        <span>Responsive dashboard layout</span>
+      } @else {
+      <li *ngFor="let lang of languages()" class="stack-item">
+        <img [src]="lang.logo" [alt]="lang.name" class="lang-icon" />
+        <div class="lang-info">
+          <strong>{{ lang.name }}</strong>
+          <span>Used in {{ lang.count }} repositories</span>
+        </div>
       </li>
+      }
     </ul>
   </section>
 

@@ -1,18 +1,19 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
-import { Stack } from './stack';
+import { StackComponent } from './stack';
 
-describe('Stack', () => {
-  let component: Stack;
-  let fixture: ComponentFixture<Stack>;
+describe('StackComponent', () => {
+  let component: StackComponent;
+  let fixture: ComponentFixture<StackComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Stack]
+      imports: [StackComponent, HttpClientTestingModule]
     })
-    .compileComponents();
+      .compileComponents();
 
-    fixture = TestBed.createComponent(Stack);
+    fixture = TestBed.createComponent(StackComponent);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

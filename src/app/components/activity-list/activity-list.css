@@ -43,6 +43,12 @@
   border: 1px solid rgba(239, 68, 68, 0.35);
 }
 
+.badge.info {
+  color: #3b82f6;
+  background: rgba(59, 130, 246, 0.15);
+  border: 1px solid rgba(59, 130, 246, 0.35);
+}
+
 .message {
   color: #e5e7eb;
   font-size: 14px;

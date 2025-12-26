@@ -1,16 +1,26 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 
-import { Activity } from './activity';
+import { ActivityService } from './activity.service';
 
-describe('Activity', () => {
-  let service: Activity;
+describe('ActivityService', () => {
+  let service: ActivityService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(Activity);
+    TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule],
+      providers: [ActivityService]
+    });
+    service = TestBed.inject(ActivityService);
   });
 
   it('should be created', () => {
     expect(service).toBeTruthy();
+  });
+
+  it('should load events', () => {
+    // Basic test to ensure method exists and doesn't crash
+    // In a real scenario, we would mock GithubService
+    expect(service.loadEvents).toBeDefined();
   });
 });

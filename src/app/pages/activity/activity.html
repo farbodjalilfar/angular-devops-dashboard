@@ -1,8 +1,6 @@
-<h2>Activity</h2>
-
 <div class="filters">
   <button
-    class="pill"
+    class="chip"
     [class.active]="filter() === 'all'"
     (click)="setFilter('all')"
   >
@@ -10,21 +8,20 @@
   </button>
 
   <button
-    class="pill"
-    [class.active]="filter() === 'deploy'"
-    (click)="setFilter('deploy')"
+    class="chip"
+    [class.active]="filter() === 'DEPLOY'"
+    (click)="setFilter('DEPLOY')"
   >
-    Deploys
+    Deploy
   </button>
 
   <button
-    class="pill"
-    [class.active]="filter() === 'alert'"
-    (click)="setFilter('alert')"
+    class="chip"
+    [class.active]="filter() === 'ALERT'"
+    (click)="setFilter('ALERT')"
   >
-    Alerts
+    Alert
   </button>
 </div>
 
-<!-- 🔑 SAME UI AS OVERVIEW -->
 <app-activity-list [items]="filteredItems()" />

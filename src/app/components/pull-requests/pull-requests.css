@@ -1,0 +1,99 @@
+.pr-card {
+    background: linear-gradient(180deg, rgba(20, 30, 55, 0.85), rgba(10, 15, 30, 0.85));
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 16px;
+    height: 100%;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.header h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    margin: 0;
+}
+
+.badge {
+    background: rgba(34, 197, 94, 0.15);
+    color: #22c55e;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+    border: 1px solid rgba(34, 197, 94, 0.2);
+}
+
+.pr-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.pr-list li {
+    margin-bottom: 12px;
+}
+
+.pr-list li:last-child {
+    margin-bottom: 0;
+}
+
+.pr-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    padding: 8px;
+    border-radius: 8px;
+    transition: background 0.2s;
+}
+
+.pr-link:hover {
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.pr-icon {
+    fill: #22c55e;
+    opacity: 0.8;
+}
+
+.pr-details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    overflow: hidden;
+}
+
+.repo {
+    font-size: 11px;
+    color: #94a3b8;
+    font-weight: 500;
+}
+
+.title {
+    font-size: 13px;
+    color: #e2e8f0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.time {
+    font-size: 11px;
+    color: #64748b;
+}
+
+.loading,
+.empty {
+    text-align: center;
+    color: #94a3b8;
+    font-size: 13px;
+    padding: 24px 0;
+}

@@ -19,21 +19,8 @@
 }
 
 .stack-list li {
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
   padding: 0.75rem 0;
   border-bottom: 1px solid #1e293b;
-}
-
-.stack-list li strong {
-  color: #e5e7eb;
-  font-size: 0.9rem;
-}
-
-.stack-list li span {
-  color: #94a3b8;
-  font-size: 0.75rem;
 }
 
 /* TAGS */
@@ -58,4 +45,32 @@
   align-items: center;
   justify-content: space-between;
   margin-bottom: 0.75rem;
+}
+
+/* LIST ITEM OVERRIDES */
+.stack-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.lang-icon {
+  width: 24px;
+  height: 24px;
+  filter: invert(1) opacity(0.8);
+}
+
+.lang-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.lang-info strong {
+  font-size: 14px;
+  color: #fff;
+}
+
+.lang-info span {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.5);
 }
