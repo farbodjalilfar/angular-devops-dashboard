@@ -10,6 +10,7 @@ import { GithubService } from '../../services/github.service';
 import { StatCardComponent } from '../../components/stat-card/stat-card';
 import { StatusBadgeComponent } from '../../components/status-badge/status-badge';
 import { ActivityListComponent } from '../../components/activity-list/activity-list';
+import { PullRequestsComponent } from '../../components/pull-requests/pull-requests';
 
 @Component({
   selector: 'app-overview',
@@ -18,7 +19,8 @@ import { ActivityListComponent } from '../../components/activity-list/activity-l
     CommonModule,
     StatCardComponent,
     StatusBadgeComponent,
-    ActivityListComponent
+    ActivityListComponent,
+    PullRequestsComponent
   ],
   templateUrl: './overview.html',
   styleUrl: './overview.css'
@@ -35,6 +37,7 @@ export class OverviewComponent implements OnInit {
 
   readonly health = this.healthService.health;
   readonly activity = this.activityService.items;
+  readonly activityLoading = this.activityService.loading;
   readonly isMockMode = this.settingsService.isMockMode;
 
   /* =========================
@@ -54,6 +57,9 @@ export class OverviewComponent implements OnInit {
 
     this.githubLabel.set(name);
     this.githubType.set(type);
+
+    // Call loadEvents for both org and user
+    this.activityService.loadEvents(name);
 
     if (type === 'org') {
       this.githubService.getOrganization(name).subscribe({

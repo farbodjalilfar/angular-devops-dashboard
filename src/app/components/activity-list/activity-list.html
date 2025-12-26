@@ -1,22 +1,28 @@
 <div class="activity-card">
-  <div
-    class="activity-row"
-    *ngFor="let item of items"
-  >
-    <span
-      class="badge"
-      [class.deploy]="item.type === 'deploy'"
-      [class.alert]="item.type === 'alert'"
-    >
-      {{ item.type | uppercase }}
+  @if (loading) {
+  @for (i of [1,2,3,4,5]; track i) {
+  <div class="activity-row">
+    <app-skeleton width="60px" height="20px" style="border-radius: 12px"></app-skeleton>
+    <div style="flex: 1">
+      <app-skeleton width="70%" height="14px"></app-skeleton>
+    </div>
+    <app-skeleton width="40px" height="12px"></app-skeleton>
+  </div>
+  }
+  } @else {
+  @for (item of items; track item.id) {
+  <div class="activity-row">
+    <span class="badge" [class.deploy]="item.type === 'DEPLOY'" [class.alert]="item.type === 'ALERT'"
+      [class.info]="item.type === 'INFO'">
+      {{ item.type }}
     </span>
 
-    <span class="message">
+    <span class="message" [title]="item.message">
       {{ item.message }}
     </span>
 
-    <span class="time">
-      {{ item.time }}
-    </span>
+    <span class="time">{{ item.time }}</span>
   </div>
+  }
+  }
 </div>

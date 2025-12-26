@@ -20,14 +20,31 @@
 ========================= */
 
 .panel {
-  background: linear-gradient(
-    180deg,
-    rgba(15, 23, 42, 0.9),
-    rgba(2, 6, 23, 0.95)
-  );
-  border: 1px solid #1e293b;
-  border-radius: 18px;
+  background: var(--bg-panel);
+  backdrop-filter: var(--glass-blur);
+  border: var(--tech-border);
+  border-radius: 4px;
   padding: 1.5rem;
+  position: relative;
+  clip-path: polygon(0 0,
+      100% 0,
+      100% calc(100% - 20px),
+      calc(100% - 20px) 100%,
+      0 100%);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease;
+}
+
+/* Corner Accents */
+.panel::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  border-top: 2px solid var(--neon-cyan);
+  border-left: 2px solid var(--neon-cyan);
 }
 
 .panel-header {
@@ -64,54 +81,67 @@
 }
 
 .metric .label {
-  font-size: 0.75rem;
-  color: #94a3b8;
-  letter-spacing: 0.05em;
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  color: var(--neon-cyan);
+  letter-spacing: 0.08em;
   text-transform: uppercase;
+  opacity: 0.8;
 }
 
 .metric .value {
-  font-size: 1rem;
-  color: #e5e7eb;
+  font-family: var(--font-mono);
+  font-size: 1.1rem;
+  color: var(--text-main);
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
 }
 
-/* =========================
-   MODE LABEL
-========================= */
+/* ... */
 
 .mode {
   margin-bottom: 1.5rem;
-  color: #94a3b8;
+  color: var(--text-secondary);
   font-size: 0.85rem;
 }
 
-/* =========================
-   BUTTONS
-========================= */
-
+/* BUTTONS */
 .btn {
   margin-top: 0.5rem;
   align-self: flex-start;
-  padding: 0.45rem 0.9rem;
+  padding: 0.5rem 1rem;
   border-radius: 999px;
-  background: #020617;
-  border: 1px solid #1e293b;
-  color: #e5e7eb;
+  background: rgba(255, 255, 255, 0.03);
+  border: var(--surface-border);
+  color: var(--text-main);
   font-size: 0.75rem;
+  font-weight: 500;
   cursor: pointer;
   position: relative;
   z-index: 5;
-  pointer-events: auto;
+  transition: all 0.2s ease;
+}
+
+.btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
 }
 
 .btn.ghost {
   background: transparent;
+  border-color: transparent;
+  color: var(--text-secondary);
+}
+
+.btn.ghost:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-main);
 }
 
 button:disabled {
   opacity: 0.4;
   cursor: not-allowed;
 }
+
 .panel {
   position: relative;
   z-index: 3;
@@ -126,6 +156,7 @@ button:disabled {
     grid-template-columns: 1fr;
   }
 }
+
 .error-banner {
   background: rgba(239, 68, 68, 0.12);
   border: 1px solid #ef4444;
@@ -143,31 +174,45 @@ button:disabled {
 .overview-header {
   display: flex;
   align-items: center;
-  gap: 1rem;
-  margin-bottom: 1.25rem;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
 }
 
 .avatar {
-  width: 200px;
-  height: 200px;
-  border-radius: 999px;
-  border: 2px solid #1e293b;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  border: 2px solid var(--neon-cyan);
+  box-shadow: 0 0 20px rgba(6, 182, 212, 0.3);
   object-fit: cover;
-  background: #020617;
+  background: var(--bg-deep);
+  position: relative;
+  z-index: 2;
 }
 
 .identity {
   display: flex;
   flex-direction: column;
+  gap: 0.5rem;
 }
 
 .identity .name {
-  font-size: 2rem;
-  font-weight: 800;
-  color: #8a8787;
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
 .identity .sub {
-  font-size: 0.75rem;
-  color: #94a3b8;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--neon-cyan);
+  background: rgba(6, 182, 212, 0.1);
+  padding: 0.2rem 0.6rem;
+  border: 1px solid rgba(6, 182, 212, 0.3);
+  display: inline-block;
+  align-self: flex-start;
 }

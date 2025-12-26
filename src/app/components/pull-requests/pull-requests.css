@@ -1,0 +1,52 @@
+.pr-card {
+    background: var(--bg-card);
+    backdrop-filter: var(--glass-blur);
+    border: var(--surface-border);
+    border-radius: 16px;
+    padding: 16px;
+    height: 100%;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.header h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-main);
+    margin: 0;
+}
+
+/* ... */
+
+.repo {
+    font-size: 11px;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.title {
+    font-size: 13px;
+    color: var(--text-main);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.time {
+    font-size: 11px;
+    color: var(--text-secondary);
+    opacity: 0.7;
+}
+
+.loading,
+.empty {
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 13px;
+    padding: 24px 0;
+}

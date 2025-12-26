@@ -1,0 +1,43 @@
+<div class="pr-card">
+    <div class="header">
+        <h3>Open Pull Requests</h3>
+        <span class="badge">{{ prs().length }} Active</span>
+    </div>
+
+    @if (loading()) {
+    <ul class="pr-list">
+        @for (i of [1,2,3]; track i) {
+        <li style="display: flex; gap: 12px; padding: 8px;">
+            <app-skeleton width="16px" height="16px"></app-skeleton>
+            <div style="flex: 1">
+                <app-skeleton width="40%" height="10px" style="margin-bottom: 6px"></app-skeleton>
+                <app-skeleton width="80%" height="12px"></app-skeleton>
+            </div>
+        </li>
+        }
+    </ul>
+    } @else if (prs().length === 0) {
+    <div class="empty">No open pull requests</div>
+    } @else {
+    <ul class="pr-list">
+        @for (pr of prs(); track pr.id) {
+        <li>
+            <a [href]="pr.html_url" target="_blank" class="pr-link">
+                <div class="pr-icon">
+                    <svg viewBox="0 0 16 16" width="16" height="16">
+                        <path
+                            d="M7.177 3.073L9.573.677A.25.25 0 0110 .854v4.792a.25.25 0 01-.427.177L7.177 3.427a.25.25 0 010-.354zM3.75 2.5a.75.75 0 100 1.5.75.75 0 000-1.5zm-2.25.75a2.25 2.25 0 114.5 0 2.25 2.25 0 01-4.5 0zm2.25 7.5a.75.75 0 100 1.5.75.75 0 000-1.5zM.75 10.75a2.25 2.25 0 114.5 0 2.25 2.25 0 01-4.5 0zM12.75 2.5a.75.75 0 100 1.5.75.75 0 000-1.5zM10.5 3.25a2.25 2.25 0 114.5 0 2.25 2.25 0 01-4.5 0zM8.377 12.777a.25.25 0 01.177.427l-2.396 2.396a.25.25 0 01-.427-.177V10.63a.25.25 0 01.177-.427l2.396 2.396a.25.25 0 01.073.177z">
+                        </path>
+                    </svg>
+                </div>
+                <div class="pr-details">
+                    <span class="repo">{{ getRepoName(pr.repository_url) }}</span>
+                    <span class="title">{{ pr.title }}</span>
+                </div>
+                <span class="time">{{ pr.created_at | date:'MMM d' }}</span>
+            </a>
+        </li>
+        }
+    </ul>
+    }
+</div>

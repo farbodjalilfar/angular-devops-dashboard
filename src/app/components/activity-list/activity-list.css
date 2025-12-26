@@ -1,21 +1,41 @@
 .activity-card {
-  border-radius: 16px;
-  padding: 12px;
-  background: linear-gradient(
-    180deg,
-    rgba(20, 30, 55, 0.85),
-    rgba(10, 15, 30, 0.85)
-  );
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 4px;
+  padding: 0;
+  background: var(--bg-panel);
+  backdrop-filter: var(--glass-blur);
+  border: var(--tech-border);
+  clip-path: polygon(0 0,
+      100% 0,
+      100% calc(100% - 15px),
+      calc(100% - 15px) 100%,
+      0 100%);
+  position: relative;
+}
+
+/* Corner Accent */
+.activity-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 15px;
+  height: 15px;
+  border-bottom: 2px solid var(--neon-cyan);
+  border-right: 2px solid var(--neon-cyan);
 }
 
 .activity-row {
   display: grid;
   grid-template-columns: auto 1fr auto;
-  gap: 12px;
+  gap: 16px;
   align-items: center;
-  padding: 14px 8px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 16px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  transition: background 0.2s ease;
+}
+
+.activity-row:hover {
+  background: rgba(255, 255, 255, 0.02);
 }
 
 .activity-row:last-child {
@@ -24,32 +44,46 @@
 
 .badge {
   padding: 4px 10px;
-  font-size: 12px;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
   font-weight: 600;
-  border-radius: 999px;
+  border-radius: 0;
+  /* Digital style */
+  clip-path: polygon(4px 0, 100% 0, 100% 100%, 0 100%, 0 4px);
   text-transform: uppercase;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.05em;
 }
 
 .badge.deploy {
-  color: #22c55e;
-  background: rgba(34, 197, 94, 0.15);
-  border: 1px solid rgba(34, 197, 94, 0.35);
+  color: var(--neon-green);
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.1);
 }
 
 .badge.alert {
-  color: #ef4444;
-  background: rgba(239, 68, 68, 0.15);
-  border: 1px solid rgba(239, 68, 68, 0.35);
+  color: var(--neon-red);
+  background: rgba(244, 63, 94, 0.1);
+  border: 1px solid rgba(244, 63, 94, 0.3);
+  box-shadow: 0 0 10px rgba(244, 63, 94, 0.1);
+}
+
+.badge.info {
+  color: var(--neon-blue);
+  background: rgba(59, 130, 246, 0.1);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  box-shadow: 0 0 10px rgba(59, 130, 246, 0.1);
 }
 
 .message {
-  color: #e5e7eb;
-  font-size: 14px;
+  color: var(--text-main);
+  font-size: 0.9rem;
+  font-family: var(--font-body);
 }
 
 .time {
-  color: #9ca3af;
-  font-size: 12px;
+  color: var(--text-dim);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
   white-space: nowrap;
 }

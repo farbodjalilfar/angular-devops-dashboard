@@ -1,30 +1,38 @@
-
 <p class="subtitle">
   Technologies used and planned for this dashboard
 </p>
 
 <div class="stack-grid">
 
-  <!-- FRONTEND -->
+  <!-- LANGUAGES -->
   <section class="panel">
     <div class="panel-header">
-      <h3>Frontend</h3>
+      <h3>Top Languages</h3>
       <span class="tag live">Live</span>
     </div>
 
     <ul class="stack-list">
-      <li>
-        <strong>Angular</strong>
-        <span>Standalone components, signals</span>
+      @if (loading()) {
+      <li *ngFor="let i of [1, 2, 3, 4]" class="stack-item">
+        <app-skeleton width="24px" height="24px" shape="circle"></app-skeleton>
+        <div style="flex: 1">
+          <app-skeleton width="60%" height="14px" style="margin-bottom: 4px"></app-skeleton>
+          <app-skeleton width="40%" height="12px"></app-skeleton>
+        </div>
       </li>
+      } @else if (languages().length === 0) {
       <li>
-        <strong>TypeScript</strong>
-        <span>Strict typing, interfaces</span>
+        <strong>No languages found</strong>
       </li>
-      <li>
-        <strong>CSS</strong>
-        <span>Responsive dashboard layout</span>
+      } @else {
+      <li *ngFor="let lang of languages()" class="stack-item clickable" (click)="selectLanguage(lang)">
+        <img [src]="lang.logo" [alt]="lang.name" class="lang-icon" />
+        <div class="lang-info">
+          <strong>{{ lang.name }}</strong>
+          <span>Used in {{ lang.count }} repositories</span>
+        </div>
       </li>
+      }
     </ul>
   </section>
 
@@ -36,17 +44,12 @@
     </div>
 
     <ul class="stack-list">
-      <li>
-        <strong>Spring Boot</strong>
-        <span>REST API layer</span>
-      </li>
-      <li>
-        <strong>GitHub API</strong>
-        <span>Repository & workflow data</span>
-      </li>
-      <li>
-        <strong>DTOs</strong>
-        <span>Clean API contracts</span>
+      <li *ngFor="let item of backendStack" class="stack-item">
+        <img [src]="item.logo" [alt]="item.name" class="lang-icon" />
+        <div class="lang-info">
+          <strong>{{ item.name }}</strong>
+          <span>{{ item.description }}</span>
+        </div>
       </li>
     </ul>
   </section>
@@ -59,19 +62,39 @@
     </div>
 
     <ul class="stack-list">
-      <li>
-        <strong>GitHub</strong>
-        <span>Source control</span>
-      </li>
-      <li>
-        <strong>Docker</strong>
-        <span>Containerized backend</span>
-      </li>
-      <li>
-        <strong>CI/CD</strong>
-        <span>Automated workflows</span>
+      <li *ngFor="let item of devOpsStack" class="stack-item">
+        <img [src]="item.logo" [alt]="item.name" class="lang-icon" />
+        <div class="lang-info">
+          <strong>{{ item.name }}</strong>
+          <span>{{ item.description }}</span>
+        </div>
       </li>
     </ul>
   </section>
 
 </div>
+
+<!-- MODAL -->
+@if (selectedLanguage()) {
+<div class="modal-backdrop" (click)="closeModal()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <div class="modal-title">
+        <img [src]="selectedLanguage()!.logo" class="lang-icon large" />
+        <h3>{{ selectedLanguage()!.name }} Repositories</h3>
+      </div>
+      <button class="btn ghost icon-only" (click)="closeModal()">✕</button>
+    </div>
+
+    <ul class="repo-list">
+      <li *ngFor="let repo of selectedLanguage()!.repos">
+        <div class="repo-info">
+          <strong>{{ repo.name }}</strong>
+          <span class="stars">★ {{ repo.stars }}</span>
+        </div>
+        <a [href]="repo.url" target="_blank" class="btn small">View</a>
+      </li>
+    </ul>
+  </div>
+</div>
+}

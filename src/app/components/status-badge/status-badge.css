@@ -1,18 +1,31 @@
 .badge {
-  padding: 0.3rem 0.6rem;
-  border-radius: 999px;
-  font-size: 0.75rem;
-  border: 1px solid #1e293b;
+  padding: 0.4rem 0.8rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  clip-path: polygon(6px 0, 100% 0, 100% 100%, 0 100%, 0 6px);
+  border: 1px solid;
 }
 
 .online {
-  color: #22c55e;
+  color: var(--neon-green);
+  background: rgba(16, 185, 129, 0.1);
+  border-color: var(--neon-green);
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.2);
 }
 
 .degraded {
-  color: #f59e0b;
+  color: #fbbf24;
+  background: rgba(251, 191, 36, 0.1);
+  border-color: #fbbf24;
+  box-shadow: 0 0 10px rgba(251, 191, 36, 0.2);
 }
 
 .offline {
-  color: #ef4444;
+  color: var(--neon-red);
+  background: rgba(244, 63, 94, 0.1);
+  border-color: var(--neon-red);
+  box-shadow: 0 0 10px rgba(244, 63, 94, 0.2);
 }

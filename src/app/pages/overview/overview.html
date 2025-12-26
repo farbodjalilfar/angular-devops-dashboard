@@ -1,15 +1,11 @@
 @if (avatarUrl()) {
-  <div class="overview-header">
-    <img
-      class="avatar"
-      [src]="avatarUrl()"
-      alt="GitHub avatar"
-    />
-    <div class="identity">
-      <div class="name">{{ githubLabel() }}</div>
-      <div class="sub">GitHub {{ githubType() }}</div>
-    </div>
+<div class="overview-header">
+  <img class="avatar" [src]="avatarUrl()" alt="GitHub avatar" />
+  <div class="identity">
+    <div class="name">{{ githubLabel() }}</div>
+    <div class="sub">GitHub {{ githubType() }}</div>
   </div>
+</div>
 }
 
 <p class="mode">
@@ -18,18 +14,14 @@
 </p>
 
 @if (error()) {
-  <div class="error-banner">
-    ⚠️ {{ error() }}
-  </div>
+<div class="error-banner">
+  ⚠️ {{ error() }}
+</div>
 }
 
 <div class="stats-grid">
   @for (stat of stats(); track stat.label) {
-    <app-stat-card
-      [label]="stat.label"
-      [value]="stat.value"
-      [hint]="stat.hint"
-    />
+  <app-stat-card [label]="stat.label" [value]="stat.value" [hint]="stat.hint" />
   }
 </div>
 
@@ -62,11 +54,7 @@
         <span class="value">{{ health().status }}</span>
       </div>
 
-      <button
-        class="btn"
-        (click)="cycleStatus()"
-        [disabled]="!isMockMode()"
-      >
+      <button class="btn" (click)="cycleStatus()" [disabled]="!isMockMode()">
         Simulate status
       </button>
     </div>
@@ -76,17 +64,16 @@
   <section class="panel">
     <div class="panel-header between">
       <h3>Recent Activity</h3>
-      <button
-        class="btn ghost"
-        (click)="addEvent()"
-        [disabled]="!isMockMode()"
-      >
+      <button class="btn ghost" (click)="addEvent()" [disabled]="!isMockMode()">
         Add event
       </button>
     </div>
 
     <div class="panel-body">
-      <app-activity-list [items]="activity()" />
+      <app-activity-list [items]="activity()" [loading]="activityLoading()" />
     </div>
   </section>
+
+  <!-- PULL REQUESTS -->
+  <app-pull-requests></app-pull-requests>
 </div>

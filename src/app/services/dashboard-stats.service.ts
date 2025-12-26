@@ -1,37 +1,26 @@
 import { Injectable, signal, inject } from '@angular/core';
 import { DashboardStat } from '../models/dashboard-stats.model';
-import {
-  GithubService,
-  GithubRepo
-} from './github.service';
+import { GithubService, GithubRepo } from './github.service';
 import { SettingsService } from './settings.service';
 
 @Injectable({ providedIn: 'root' })
 export class DashboardStatsService {
   private readonly github = inject(GithubService);
-  private readonly settings = inject(SettingsService);
-
-  /* =========================
-     STATE
-  ========================= */
+  private readonly settingsService = inject(SettingsService);
 
   readonly error = signal<string | null>(null);
 
   private readonly _stats = signal<DashboardStat[]>([
     { label: 'Active Projects', value: '-', hint: 'GitHub repositories' },
     { label: 'Technologies', value: '-', hint: 'Detected languages' },
-    { label: 'System Status', value: 'Idle', hint: 'GitHub connection' },
+    { label: 'Total Stars', value: '-', hint: 'Across all repositories' },
     { label: 'Last Update', value: '-', hint: 'Latest repository update' }
   ]);
 
   readonly stats = this._stats.asReadonly();
 
-  /* =========================
-     LOAD
-  ========================= */
-
   load() {
-    const settings = this.settings.settings();
+    const settings = this.settingsService.settings();
     const name = settings.githubName?.trim();
     const type = settings.accountType;
 
@@ -39,62 +28,64 @@ export class DashboardStatsService {
 
     this.error.set(null);
 
-    /* =========================
-       ACTIVE PROJECTS (NO LIMIT)
-    ========================= */
-
     if (type === 'org') {
-      this.github.getOrganization(name).subscribe({
-        next: org =>
-          this.updateStat('Active Projects', org.public_repos),
-        error: () => this.handleError()
-      });
+      this.loadOrg(name);
     } else {
-      this.github.getUser(name).subscribe({
-        next: user =>
-          this.updateStat('Active Projects', user.public_repos),
-        error: () => this.handleError()
-      });
+      this.loadUser(name);
     }
+  }
 
-    /* =========================
-       REPOS (FIRST 100)
-    ========================= */
-
-    const repos$ =
-      type === 'org'
-        ? this.github.getOrganizationRepos(name)
-        : this.github.getUserRepos(name);
-
-    repos$.subscribe({
-      next: (repos: GithubRepo[]) => {
-        if (!repos.length) {
-          this.handleError();
-          return;
-        }
-
-        const languages = new Set(
-          repos.map(r => r.language).filter(Boolean)
-        );
-
-        const latest = repos
-          .map(r => new Date(r.updated_at))
-          .sort((a, b) => b.getTime() - a.getTime())[0];
-
-        this.updateStat('Technologies', languages.size);
-        this.updateStat('System Status', 'Connected');
-        this.updateStat(
-          'Last Update',
-          latest ? latest.toDateString() : '-'
-        );
+  private loadOrg(org: string) {
+    this.github.getOrganization(org).subscribe({
+      next: orgData => {
+        this.updateStat('Active Projects', orgData.public_repos);
       },
+      error: () => this.handleError()
+    });
+
+    this.github.getOrgRepositories(org).subscribe({
+      next: repos => this.processRepos(repos),
       error: () => this.handleError()
     });
   }
 
-  /* =========================
-     HELPERS
-  ========================= */
+  private loadUser(username: string) {
+    this.github.getUser(username).subscribe({
+      next: user => {
+        this.updateStat('Active Projects', user.public_repos);
+      },
+      error: () => this.handleError()
+    });
+
+    this.github.getUserRepositories(username).subscribe({
+      next: repos => this.processRepos(repos),
+      error: () => this.handleError()
+    });
+  }
+
+  private processRepos(repos: GithubRepo[]) {
+    if (!repos.length) {
+      this.handleError();
+      return;
+    }
+
+    const languages = new Set(
+      repos.map(r => r.language).filter(Boolean)
+    );
+
+    const latest = repos
+      .map(r => new Date(r.updated_at))
+      .sort((a, b) => b.getTime() - a.getTime())[0];
+
+    const stars = repos.reduce((acc, r) => acc + (r.stargazers_count || 0), 0);
+    const forks = repos.reduce((acc, r) => acc + (r.forks_count || 0), 0);
+
+    this.updateStat('Technologies', languages.size);
+    this.updateStat('Total Stars', stars);
+    this.updateStat('Last Update', latest.toDateString());
+
+
+  }
 
   private updateStat(label: string, value: string | number) {
     this._stats.update(stats =>
@@ -110,7 +101,7 @@ export class DashboardStatsService {
     this._stats.set([
       { label: 'Active Projects', value: '-', hint: 'GitHub repositories' },
       { label: 'Technologies', value: '-', hint: 'Detected languages' },
-      { label: 'System Status', value: 'Error', hint: 'Invalid GitHub account' },
+      { label: 'Total Stars', value: '-', hint: '—' },
       { label: 'Last Update', value: '-', hint: '—' }
     ]);
   }
