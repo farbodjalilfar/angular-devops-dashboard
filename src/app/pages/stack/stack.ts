@@ -4,6 +4,12 @@ import { GithubService } from '../../services/github.service';
 import { SettingsService } from '../../services/settings.service';
 import { SkeletonComponent } from '../../components/skeleton/skeleton';
 
+interface StackItem {
+  name: string;
+  description: string;
+  logo: string;
+}
+
 @Component({
   selector: 'app-stack',
   standalone: true,
@@ -17,6 +23,18 @@ export class StackComponent implements OnInit {
 
   readonly languages = signal<{ name: string; count: number; logo: string }[]>([]);
   readonly loading = signal(true);
+
+  readonly backendStack: StackItem[] = [
+    { name: 'Spring Boot', description: 'REST API layer', logo: 'https://cdn.simpleicons.org/springboot' },
+    { name: 'GitHub API', description: 'Repository & workflow data', logo: 'https://cdn.simpleicons.org/github' },
+    { name: 'DTOs', description: 'Clean API contracts', logo: 'https://cdn.simpleicons.org/json' }
+  ];
+
+  readonly devOpsStack: StackItem[] = [
+    { name: 'GitHub', description: 'Source control', logo: 'https://cdn.simpleicons.org/github' },
+    { name: 'Docker', description: 'Containerized backend', logo: 'https://cdn.simpleicons.org/docker' },
+    { name: 'CI/CD', description: 'Automated workflows', logo: 'https://cdn.simpleicons.org/githubactions' }
+  ];
 
   ngOnInit() {
     const name = this.settings.settings().githubName;
@@ -45,14 +63,15 @@ export class StackComponent implements OnInit {
       'CSS': 'css3',
       'SCSS': 'sass',
       'Python': 'python',
-      'Java': 'java',
+      'Java': 'openjdk',
       'C++': 'cplusplus',
       'C#': 'csharp',
       'Go': 'go',
       'Rust': 'rust',
       'PHP': 'php',
       'Ruby': 'ruby',
-      'Shell': 'gnubash'
+      'Shell': 'gnubash',
+      'Jupyter Notebook': 'jupyter'
     };
     const slug = map[language] || language.toLowerCase();
     return `https://cdn.simpleicons.org/${slug}`;
