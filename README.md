@@ -1,113 +1,263 @@
 # 🌌 Orbital DevOps Dashboard
 
-> A high-performance, futuristic DevOps monitoring suite engineered for visibility and real-time intervention.
+> A real-time DevOps monitoring platform with a futuristic cyberpunk interface, powered by Angular 21 and Spring Boot.
 
-[![Angular](https://img.shields.io/badge/Angular-19.0-DD0031?style=for-the-badge&logo=angular&logoColor=white)](https://angular.io/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.7-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![Spring Boot](https://img.shields.io/badge/Spring_Boot-3.4-6DB33F?style=for-the-badge&logo=spring-boot&logoColor=white)](https://spring.io/projects/spring-boot)
-[![License](https://img.shields.io/badge/License-MIT-000000?style=for-the-badge)](https://opensource.org/licenses/MIT)
-
-## 🔭 Project Overview
-
-**Orbital DevOps** is more than just a dashboard; it's a mission control center for your software infrastructure. Designed with a breathtaking **Orbital Blue** cyberpunk aesthetic, it provides an immersive, HUD-style interface that makes monitoring system health, GitHub activity, and tech stacks feel like piloting a spacecraft.
-
-### 🌐 [Live Deployment](https://farbodjalilfar.github.io/angular-devops-dashboard/)
+[![Live Demo](https://img.shields.io/badge/🚀_Live_Demo-Orbital_DevOps-06B6D4?style=for-the-badge)](https://farbodjalilfar.github.io/angular-devops-dashboard/)
+[![Angular](https://img.shields.io/badge/Angular-21.0-DD0031?style=for-the-badge&logo=angular&logoColor=white)](https://angular.io/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.9-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Spring Boot](https://img.shields.io/badge/Spring_Boot-4.0-6DB33F?style=for-the-badge&logo=spring-boot&logoColor=white)](https://spring.io/projects/spring-boot)
+[![License](https://img.shields.io/badge/License-MIT-000000?style=for-the-badge)](LICENSE)
 
 ---
 
-## 🚀 Key Modules
+## 📖 Overview
 
-### 📊 Real-Time Mission Control
-*   **Live GitHub Streaming**: Real-time integration with GitHub's event stream for your repositories.
-*   **System Telemetry**: Native Spring Boot integration for monitoring latency, error rates, and heartbeat.
-*   **Intelligent Caching**: Advanced dual-layer caching strategy (Memory + LocalStorage) to optimize API usage and responsiveness.
+**Orbital DevOps** is a cutting-edge DevOps monitoring dashboard that transforms infrastructure visibility into an immersive experience. Built with the latest Angular 21 features and backed by a Spring Boot API, it provides real-time insights into your GitHub activity, system health, and technology stack—all wrapped in a stunning **Orbital Blue** cyberpunk aesthetic.
 
-### 🎨 HUD-Grade Interface
-*   **Orbital Blue Design System**: A bespoke CSS framework featuring neon cyan accents, glassmorphism, and angled tech panels.
-*   **Dynamic Typography**: Cyber-optimized fonts including *Orbitron* for headers and high-readability *JetBrains Mono* for data streams.
-*   **Responsive Grids**: A digital background grid system providing structural depth across all screen sizes.
+### ✨ Key Highlights
 
-### 🛠️ Technology Intelligence
-*   **Language Ecosystems**: Dynamic visualization of programming language distribution across your entire portfolio.
-*   **Interactive Drill-down**: Clickable tech badges that reveal specific repository cohorts using those technologies.
-*   **DevOps Roadmap**: Visual planner for backend services and infrastructure tools.
+- **🎨 Futuristic UI**: HUD-style panels with neon accents, glassmorphism effects, and angled geometric shapes
+- **⚡ Real-Time Data**: Live GitHub event streaming and system health monitoring
+- **🔄 Full-Stack Architecture**: Angular 21 frontend + Spring Boot 4.0 backend
+- **📊 Interactive Visualizations**: Dynamic tech stack analysis with drill-down capabilities
+- **🚀 Production Ready**: Deployed on GitHub Pages with automated CI/CD
 
 ---
 
-## 🛠️ Technical Stack
+## 🎯 Features
 
-### **Frontend Architecture**
-*   **Angular 19**: Leveraging the latest Signals-based reactivity for negligible performance overhead.
-*   **Standalone Components**: Fully modular, tree-shakable architecture.
-*   **CSS Micro-Animations**: High-performance hardware-accelerated transitions.
+### 📊 Overview Dashboard
+- **System Health Monitoring**: Real-time latency, error rates, and status indicators
+- **GitHub Statistics**: Repository count, activity metrics, and contribution tracking
+- **Profile Integration**: Dynamic avatar and organization/user information
+- **Activity Feed**: Live stream of GitHub events (pushes, PRs, issues, releases)
+- **Pull Request Tracker**: Quick access to open PRs with direct GitHub links
 
-### **Backend Architecture**
-*   **Spring Boot**: Java-based RESTful API serving critical system health telemetry.
-*   **Proactive CORS Management**: Secure cross-origin resource sharing specifically tuned for Angular clients.
-*   **Java 21/24 Native**: Built on the latest JVM features for maximum scalability.
+### 🛠️ Tech Stack Analyzer
+- **Language Detection**: Automatic analysis of programming languages across all repositories
+- **Interactive Exploration**: Click any language to view repositories using that technology
+- **Visual Hierarchy**: Top languages displayed with usage statistics
+- **Technology Roadmap**: Planned backend and DevOps tools visualization
+
+### 📈 Activity Timeline
+- **Event Categorization**: Intelligent filtering by event type (deploy, alert, info)
+- **Real-Time Updates**: Live GitHub event processing and display
+- **Visual Badges**: Color-coded status indicators with neon glow effects
+- **Chronological Feed**: Time-stamped activity with monospace typography
+
+### ⚙️ Settings & Configuration
+- **GitHub Integration**: Configure organization or user account
+- **Mock Mode**: Toggle between live data and mock data for testing
+- **Account Type Selection**: Switch between organization and user views
+- **Persistent Storage**: Settings saved to browser localStorage
 
 ---
 
-## 🏁 Quick Initiation
+## 🏗️ Architecture
 
-### 1. Zero-Config Startup
-```bash
-# Clone the manifest
-git clone https://github.com/farbodjalilfar/angular-devops-dashboard.git
-cd angular-devops-dashboard
-
-# Install system dependencies
-npm install
-
-# Launch Mission Control
-npm start
+### Frontend (Angular 21)
+```
+src/app/
+├── components/          # Reusable UI components
+│   ├── stat-card/      # Metric display cards
+│   ├── activity-list/  # Event feed component
+│   ├── pull-requests/  # PR list widget
+│   ├── status-badge/   # Status indicators
+│   └── skeleton/       # Loading states
+├── pages/              # Route-level views
+│   ├── overview/       # Main dashboard
+│   ├── stack/          # Tech stack analyzer
+│   ├── activity/       # Activity timeline
+│   └── settings/       # Configuration panel
+├── services/           # Business logic & API clients
+│   ├── github.service.ts          # GitHub API integration
+│   ├── dashboard-stats.service.ts # Metrics aggregation
+│   ├── system-health.service.ts   # Health monitoring
+│   ├── activity.service.ts        # Event processing
+│   └── settings.service.ts        # User preferences
+└── layout/             # App structure
+    ├── sidebar/        # Navigation menu
+    └── header/         # Top bar with status
 ```
 
-### 2. Spring Boot Telemetry
-```bash
-# Enter telemetry module
-cd backend
-
-# Execute server
-./mvnw spring-boot:run
+### Backend (Spring Boot 4.0)
+```
+backend/src/main/java/com/devops/api/
+├── DevopsApiApplication.java    # Main application
+├── controller/
+│   └── HealthController.java    # REST endpoints
+└── model/
+    └── HealthStatus.java         # Data models
 ```
 
 ---
 
-## 📂 System Architecture
+## 🚀 Getting Started
 
-```text
-├── 📦 backend/                  # Spring Boot Telemetry API (Java)
-├── 📦 src/
-│   ├── 🛠️ app/
-│   │   ├── 🧩 components/       # HUD Widgets & Stat Cards
-│   │   ├── 🧭 layout/           # Global Sidebar & Glass Header
-│   │   ├── 📄 pages/            # View Controllers (Overview, Tech Stack, etc.)
-│   │   └── 🔌 services/         # Logic Layers & API Clients
-│   └── 📝 styles.css            # Orbital Blue Design System Core
-└── 📜 package.json              # Automation Scripts
-```
+### Prerequisites
+- **Node.js** 18+ and npm
+- **Java** 21+ (for backend)
+- **Git**
 
-## 🛰️ Deployment Logic
+### Installation
 
-Deploying updates to the live production server is automated via:
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/farbodjalilfar/angular-devops-dashboard.git
+   cd angular-devops-dashboard
+   ```
+
+2. **Install frontend dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Start the Angular development server**
+   ```bash
+   npm start
+   ```
+   Navigate to `http://localhost:4200`
+
+4. **Start the Spring Boot backend** (optional, for live health data)
+   ```bash
+   cd backend
+   ./mvnw spring-boot:run
+   ```
+   Backend runs on `http://localhost:8080`
+
+---
+
+## 🎨 Design System
+
+### Color Palette (Orbital Blue)
+- **Background**: Deep Slate (`#0f172a`)
+- **Panels**: Semi-transparent Slate with glassmorphism
+- **Primary Accent**: Neon Cyan (`#22d3ee`)
+- **Secondary Accent**: Neon Purple (`#c084fc`)
+- **Success**: Neon Green (`#34d399`)
+- **Error**: Neon Red (`#fb7185`)
+
+### Typography
+- **Display**: Orbitron (Headers, titles)
+- **Body**: Inter (General text)
+- **Monospace**: JetBrains Mono (Data, metrics, code)
+
+### Visual Effects
+- **Glassmorphism**: `backdrop-filter: blur(10px)`
+- **Angled Panels**: CSS `clip-path` for geometric shapes
+- **Neon Glow**: `text-shadow` and `box-shadow` with neon colors
+- **Grid Background**: Subtle tech-grid overlay
+
+---
+
+## 🛠️ Available Scripts
+
+| Command | Description |
+|---------|-------------|
+| `npm start` | Start development server (port 4200) |
+| `npm run build` | Build for production |
+| `npm run deploy` | Build and deploy to GitHub Pages |
+| `npm test` | Run unit tests with Vitest |
+| `npm run watch` | Build in watch mode |
+
+---
+
+## 🌐 Deployment
+
+The application is automatically deployed to GitHub Pages using the custom `deploy` script:
+
 ```bash
 npm run deploy
 ```
-This single command handles **Production Build** ➡️ **Base-HREF Alignment** ➡️ **404 Routing Fix** ➡️ **GitHub Pages Synchronization**.
+
+This command:
+1. Builds the production bundle with correct base-href
+2. Copies `index.csr.html` to `index.html` for GitHub Pages compatibility
+3. Creates `404.html` for client-side routing
+4. Pushes to the `gh-pages` branch
+
+**Live URL**: [https://farbodjalilfar.github.io/angular-devops-dashboard/](https://farbodjalilfar.github.io/angular-devops-dashboard/)
 
 ---
 
-## 🔮 Future Roadmap
+## 🔧 Configuration
 
-- [ ] **Sentinel Protocol**: Real-time WebSocket notifications for critical failures.
-- [ ] **Orbital Multi-Tenancy**: Support for multiple GitHub Organizations simultaneously.
-- [ ] **Dark Matter Theme**: Ultra-high contrast mode for night-time operation.
-- [ ] **Infrastructure as Code**: Integration with Terraform/Kubernetes status providers.
+### GitHub Integration
+1. Navigate to **Settings** page
+2. Enter your GitHub username or organization name
+3. Select account type (User/Organization)
+4. Toggle **Mock Mode** off to use live GitHub data
 
-## ⚖️ License
-Distributed under the **MIT License**. See `LICENSE` for more information.
+### Backend Connection
+- The frontend connects to `http://localhost:8080/api/health` when Mock Mode is disabled
+- CORS is pre-configured for `http://localhost:4200`
+- For production deployment, update the API URL in `system-health.service.ts`
 
 ---
 
-**Developed & Maintained by [Farbod Jalilfar](https://github.com/farbodjalilfar)**
+## 📦 Tech Stack
+
+### Frontend
+- **Framework**: Angular 21 (Standalone Components, Signals)
+- **Language**: TypeScript 5.9
+- **Styling**: Custom CSS with CSS Variables
+- **HTTP Client**: Angular HttpClient
+- **Routing**: Angular Router
+- **State Management**: Angular Signals
+- **SSR**: Angular Universal (Server-Side Rendering)
+
+### Backend
+- **Framework**: Spring Boot 4.0.1
+- **Language**: Java 21
+- **Build Tool**: Maven
+- **Dependencies**: Spring Web, Spring DevTools, Lombok
+
+### DevOps
+- **Hosting**: GitHub Pages
+- **CI/CD**: angular-cli-ghpages
+- **Version Control**: Git & GitHub
+
+---
+
+## 🗺️ Roadmap
+
+- [ ] **Real-time WebSocket Integration**: Live updates without polling
+- [ ] **Multi-Organization Support**: Monitor multiple GitHub accounts
+- [ ] **Custom Metrics**: User-defined KPIs and dashboards
+- [ ] **Dark/Light Theme Toggle**: Alternative color schemes
+- [ ] **Export Functionality**: PDF/CSV report generation
+- [ ] **Kubernetes Integration**: Cluster health monitoring
+- [ ] **CI/CD Pipeline Visualization**: Build status tracking
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
+
+## � Author
+
+**Farbod Jalilfar**
+- GitHub: [@farbodjalilfar](https://github.com/farbodjalilfar)
+- Project: [angular-devops-dashboard](https://github.com/farbodjalilfar/angular-devops-dashboard)
+
+---
+
+## 🙏 Acknowledgments
+
+- **Icons**: [Simple Icons](https://simpleicons.org/)
+- **Fonts**: [Google Fonts](https://fonts.google.com/) (Orbitron, Inter, JetBrains Mono)
+- **Inspiration**: Cyberpunk aesthetics and sci-fi HUD designs
+- **API**: [GitHub REST API](https://docs.github.com/en/rest)
+
+---
+
+<div align="center">
+
+**Built with ❤️ using Angular & Spring Boot**
+
+[⬆ Back to Top](#-orbital-devops-dashboard)
+
+</div>
