@@ -132,28 +132,6 @@ backend/src/main/java/com/devops/api/
 
 ---
 
-## 🎨 Design System
-
-### Color Palette (Orbital Blue)
-- **Background**: Deep Slate (`#0f172a`)
-- **Panels**: Semi-transparent Slate with glassmorphism
-- **Primary Accent**: Neon Cyan (`#22d3ee`)
-- **Secondary Accent**: Neon Purple (`#c084fc`)
-- **Success**: Neon Green (`#34d399`)
-- **Error**: Neon Red (`#fb7185`)
-
-### Typography
-- **Display**: Orbitron (Headers, titles)
-- **Body**: Inter (General text)
-- **Monospace**: JetBrains Mono (Data, metrics, code)
-
-### Visual Effects
-- **Glassmorphism**: `backdrop-filter: blur(10px)`
-- **Angled Panels**: CSS `clip-path` for geometric shapes
-- **Neon Glow**: `text-shadow` and `box-shadow` with neon colors
-- **Grid Background**: Subtle tech-grid overlay
-
----
 
 ## 🛠️ Available Scripts
 
