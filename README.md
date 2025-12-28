@@ -2,11 +2,16 @@
 
 > A real-time DevOps monitoring platform with a futuristic cyberpunk interface, powered by Angular 21 and Spring Boot.
 
-[![Live Demo](https://img.shields.io/badge/🚀_Live_Demo-Orbital_DevOps-06B6D4?style=for-the-badge)](https://farbodjalilfar.github.io/angular-devops-dashboard/)
+<div align="center">
+
+### 🚀 [**VIEW LIVE DEMO**](https://farbodjalilfar.github.io/angular-devops-dashboard/) 🚀
+
 [![Angular](https://img.shields.io/badge/Angular-21.0-DD0031?style=for-the-badge&logo=angular&logoColor=white)](https://angular.io/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.9-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Spring Boot](https://img.shields.io/badge/Spring_Boot-4.0-6DB33F?style=for-the-badge&logo=spring-boot&logoColor=white)](https://spring.io/projects/spring-boot)
 [![License](https://img.shields.io/badge/License-MIT-000000?style=for-the-badge)](LICENSE)
+
+</div>
 
 ---
 
