@@ -50,6 +50,7 @@ export class OverviewComponent implements OnInit {
 
   ngOnInit() {
     this.statsService.load();
+    this.healthService.load();
 
     const settings = this.settingsService.settings();
     const name = settings.githubName;
