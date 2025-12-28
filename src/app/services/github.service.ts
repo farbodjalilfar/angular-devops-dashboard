@@ -1,4 +1,5 @@
-import { Injectable, inject } from '@angular/core';
+import { Injectable, inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Observable, map, of, tap } from 'rxjs';
 
@@ -66,28 +67,39 @@ export interface GithubSearch<T> {
 @Injectable({ providedIn: 'root' })
 export class GithubService {
   private readonly http = inject(HttpClient);
+  private readonly platformId = inject(PLATFORM_ID);
+
+  private readonly CACHE_KEY = 'github_cache';
+  private readonly CACHE_EXPIRY = 15 * 60 * 1000; // 15 mins
+
+  private getCache(): any {
+    if (!isPlatformBrowser(this.platformId)) return {};
+    const data = localStorage.getItem(this.CACHE_KEY);
+    return data ? JSON.parse(data) : {};
+  }
+
+  private setCache(key: string, data: any): void {
+    if (!isPlatformBrowser(this.platformId)) return;
+    const cache = this.getCache();
+    cache[key] = {
+      data,
+      timestamp: Date.now()
+    };
+    localStorage.setItem(this.CACHE_KEY, JSON.stringify(cache));
+  }
 
   private cache<T>(key: string, request: Observable<T>): Observable<T> {
-    const cached = localStorage.getItem(key);
-    if (cached) {
-      try {
-        const { data, timestamp } = JSON.parse(cached);
-        // Cache validity: 15 minutes
-        if (Date.now() - timestamp < 15 * 60 * 1000) {
-          return of(data);
-        }
-      } catch (e) {
-        localStorage.removeItem(key);
-      }
+    if (!isPlatformBrowser(this.platformId)) return request;
+
+    const cache = this.getCache();
+    const entry = cache[key];
+
+    if (entry && (Date.now() - entry.timestamp < this.CACHE_EXPIRY)) {
+      return of(entry.data);
     }
 
     return request.pipe(
-      tap(data => {
-        localStorage.setItem(key, JSON.stringify({
-          data,
-          timestamp: Date.now()
-        }));
-      })
+      tap(data => this.setCache(key, data))
     );
   }
 
